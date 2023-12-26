@@ -1,0 +1,58 @@
+﻿{% extends 'base.html' %}
+{% load i18n %}
+
+{% block content %}
+    <main class="main">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="{% url 'products:home' %}" rel="nofollow">{% blocktranslate %} Bosh Sahifa {% endblocktranslate %}</a>
+                    <span></span> {% blocktranslate %} Tizimga kirish {% endblocktranslate %}
+                </div>
+            </div>
+        </div>
+        <section class="pt-150 pb-150">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 m-auto">
+                        <div class="row">
+                            <div class="col-lg-5">
+                                <div class="login_wrap widget-taber-content p-30 background-white border-radius-10">
+                                    <div class="padding_eight_all bg-white">
+                                        <div class="heading_s1">
+                                            <h3 class="mb-30">{% blocktranslate %} Tizimga kirish {% endblocktranslate %}</h3>
+                                        </div>
+                                        <form method="post">{% csrf_token %}
+
+                                            <div class="form-group">
+                                                {{ login_form.username }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ login_form.password }}
+
+                                            </div>
+                                            <div class="login_footer form-group">
+                                                <div class="chek-form">
+                                                    <div class="custome-checkbox">
+                                                        <input class="form-check-input" type="checkbox" name="checkbox" id="exampleCheckbox1" value="">
+                                                        <label class="form-check-label" for="exampleCheckbox1"><span>{% blocktranslate %} Meni eslab qol {% endblocktranslate %}</span></label>
+                                                    </div>
+                                                </div>
+                                                <a class="text-muted" href="#">{% blocktranslate %} Parolni unutdingizmi? {% endblocktranslate %}</a>
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-fill-out btn-block hover-up" name="login">{% blocktranslate %} Tizimga kirish {% endblocktranslate %}</button>
+                                                <a href="{% url 'accounts:register' %}" class="d-flex align-items-start text-muted justify-content-end">{% blocktranslate %} Ro'yxatdan o'tish {% endblocktranslate %}</a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}

@@ -1,0 +1,102 @@
+﻿{% extends 'base_shop_all.html' %}
+{% load django_template_maths %}
+{% load i18n %}
+
+{% load humanize %}
+
+
+    {% block content %}
+    <main class="main">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="{% url 'products:home' %}" rel="nofollow">{% blocktranslate %} Bosh Sahifa {% endblocktranslate %}</a>
+                    <span></span> <a href="{% url 'products:shop' %}">{% blocktranslate %} Barcha tavarlar {% endblocktranslate %}</a>
+                </div>
+            </div>
+        </div>
+        <section class="mt-60 mb-60">
+            
+            <div class="container">
+                <div class="row flex-row-reverse">
+                    <div class="col-lg-12">
+                        <div class="shop-product-fillter">
+                            <div class="totall-product">
+                                <p> {% blocktranslate %} Biz siz uchun {% endblocktranslate %} <strong class="text-brand">{{ products|length }}</strong> {% blocktranslate %} ta mahsulot topdik{% endblocktranslate %}!</p>
+                            </div>
+                        </div>
+                        <div class="row product-grid-4">
+                            {% for product in products %}
+                                <div class="col-lg-3 col-md-3 col-12 col-sm-6">
+                                    <div class="product-cart-wrap mb-30">
+                                        <div class="product-img-action-wrap">
+                                            <div class="product-img product-img-zoom">
+                                                <a href="{% url 'products:shop_detail' product.slug  product.uuid %}">
+                                                    <img class="default-img" src="{{ product.product_images.first.image.url }}" alt="">
+                                                    <img class="hover-img" src="{{ product.product_images.last.image.url }}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="product-action-1">
+                                                <a aria-label="{% blocktranslate %} Istaklar {% endblocktranslate %}" class="action-btn hover-up" href="{% url 'order:wishlist_product' product.uuid %}"><i class="far fa-heart"></i></a>
+                                            </div>
+                                            <div class="product-badges product-badges-position product-badges-mrg">
+                                                <span class="{{ product.status }}">{% if product.status %}{{ product.status }}{% endif %}</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-content-wrap">
+                                            <div class="product-category">
+                                                {% if product.brand %}
+                                                    <a href="#">{{ product.brand }}</a>
+                                                {% else %}
+                                                    <pre> </pre>
+                                                {% endif %}
+                                            </div>
+                                            <h2 style="height: 50px;"><a href="{% url 'products:shop_detail' product.slug  product.uuid %}">{{ product.title|slice:":60" }}</a></h2>
+                                            <div class="product-rate">
+                                                <div class="product-rating"
+                                                     style="width:{{ product.mid_stars_percent }}%"></div>
+                                            </div>
+                                            <div class="product-price">
+                                                {% if product.percentage %}
+                                            
+                                                    <span class="old-price" >{{ product.get_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span><br>
+                                                    {% if product.variant.first.get_children.first %}
+                                                    <span class="new-price">{{ product.get_discount_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span><br>
+                                                    
+                                                    <span class="variant-price">{{ product.get_discount_price|mul:product.variant.first.get_children.first.percent|div:100|add:product.get_discount_price|div:product.variant.first.get_children.first.duration|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}/oyiga</span>
+                                                    {% else %}
+                                        
+                                                    <span class="variant-price">{{ product.get_discount_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span><br>
+                                                    {% endif %}
+
+                                                {% else %}
+                                                    {% if product.variant.first.get_children.first %}
+                                                    <span class="new-price mt-30">{{ product.get_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span><br>
+                                                    
+                                                    <span class="variant-price mt-30">{{ product.get_price|mul:product.variant.first.get_children.first.percent|div:100|add:product.get_price|div:product.variant.first.get_children.first.duration|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}/oyiga</span>
+                                                    {% else %}
+                                                    <br>
+                                                    <span class="variant-price">{{ product.get_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span><br>
+                                                    {% endif %}
+                                                    <pre> </pre>
+                                                {% endif %}
+                                            </div>
+                                            <div class="product-action-1 show">
+                                                <a aria-label="{% blocktranslate %} Istaklar {% endblocktranslate %}" class="action-btn hover-up d-lg-none" href="{% url 'order:wishlist_product' product.uuid %}"><i class="far fa-heart"></i></a>
+
+                                                <a aria-label="Savatchaga" class="action-btn hover-up" href="{% url 'order:shop_cart_product' product.uuid %}"><i class="far fa-shopping-bag"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!--pagination-->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    {% endblock content %}
+

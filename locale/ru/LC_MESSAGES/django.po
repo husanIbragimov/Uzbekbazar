@@ -1,0 +1,755 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-19 00:05+0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+#: templates/accounts/login.html:9 templates/accounts/profile.html:27
+#: templates/accounts/register.html:9 templates/shop-cart.html:11
+#: templates/shop-notifications.html:10 templates/shop-product-detail.html:299
+#: templates/shop-wishlist.html:10 templates/shop.html:13
+#: templates/shopall.html:13
+msgid " Bosh Sahifa "
+msgstr "Главная"
+
+#: templates/accounts/login.html:10 templates/accounts/login.html:23
+#: templates/accounts/login.html:44 templates/base.html:535
+msgid " Tizimga kirish "
+msgstr "Войти"
+
+#: templates/accounts/login.html:38
+msgid " Meni eslab qol "
+msgstr "Запомнить"
+
+#: templates/accounts/login.html:41
+msgid " Parolni unutdingizmi? "
+msgstr "Забыли пароль?"
+
+#: templates/accounts/login.html:45 templates/accounts/register.html:10
+#: templates/accounts/register.html:54 templates/base.html:82
+#: templates/base_shop_all.html:74
+msgid " Ro'yxatdan o'tish "
+msgstr "Зарегистрироваться"
+
+#: templates/accounts/profile.html:28 templates/base.html:533
+msgid " Mening hisobim "
+msgstr "Мой кабинет"
+
+#: templates/accounts/profile.html:41
+msgid " Boshqaruv paneli "
+msgstr "Панель управления"
+
+#: templates/accounts/profile.html:44
+msgid " Buyurtmalar "
+msgstr "Заказы"
+
+#: templates/accounts/profile.html:63 templates/accounts/profile.html:124
+msgid " Hisob tafsilotlari "
+msgstr "Детали"
+
+#: templates/accounts/profile.html:66
+msgid " Parolni o'zgartirish"
+msgstr "Изменить пароль"
+
+#: templates/accounts/profile.html:69
+msgid " Chiqish "
+msgstr "Выход"
+
+#: templates/accounts/profile.html:79
+msgid " Assalomu alaykum "
+msgstr "Здравствуйте"
+
+#: templates/accounts/profile.html:82
+msgid ""
+" Hisobingiz boshqaruv panelida siz so'nggi buyurtmalaringizni osongina "
+"tekshirishingiz va ko'rishingiz, parol va hisob ma'lumotlarini "
+"tahrirlashingiz mumkin. "
+msgstr ""
+
+#: templates/accounts/profile.html:89
+msgid " Buyurtmalaringiz "
+msgstr "Ваши заказы"
+
+#: templates/accounts/profile.html:96
+msgid " Buyurtma "
+msgstr "Заказ"
+
+#: templates/accounts/profile.html:97 templates/shop-notifications.html:24
+msgid " Sana "
+msgstr "Дата"
+
+#: templates/accounts/profile.html:98
+msgid " Holat "
+msgstr "Статус"
+
+#: templates/accounts/profile.html:99
+msgid " Harakatlar "
+msgstr "Действия"
+
+#: templates/accounts/profile.html:109
+msgid " Ko'rish "
+msgstr "Посмотреть"
+
+#: templates/accounts/profile.html:130
+msgid " Ism "
+msgstr "Имя"
+
+#: templates/accounts/profile.html:134
+msgid " Familiya "
+msgstr "Фамилия"
+
+#: templates/accounts/profile.html:138 templates/shop-cart.html:25
+msgid " Rasm "
+msgstr "Изображение"
+
+#: templates/accounts/profile.html:143 templates/accounts/profile.html:171
+msgid " Saqlash "
+msgstr "Сохранить"
+
+#: templates/accounts/profile.html:153
+msgid " Parolni o'zgartirish "
+msgstr "Изменить пароль"
+
+#: templates/accounts/profile.html:159
+msgid " Joriy parol "
+msgstr "Текущий пароль"
+
+#: templates/accounts/profile.html:163
+msgid " Yangi parol "
+msgstr "Новый пароль"
+
+#: templates/accounts/profile.html:167
+msgid " Parolni tasdiqlang "
+msgstr "Подтвердите пароль"
+
+#: templates/accounts/register.html:23
+msgid " Hisob ochish "
+msgstr "Открыть аккаунт"
+
+#: templates/accounts/register.html:26
+msgid ""
+" Sizning shaxsiy ma'lumotlaringiz ushbu veb-saytdagi amalyotlaringizni "
+"qo'llab-quvvatlash, hisobingizga kirishni boshqarish va maxfiylik "
+"siyosatimizda tasvirlangan boshqa maqsadlarda foydalaniladi. "
+msgstr ""
+
+#: templates/accounts/register.html:54 templates/shop-product-detail.html:680
+msgid " Yuborish "
+msgstr "Отправить"
+
+#: templates/accounts/register.html:58
+msgid " Yoki "
+msgstr "Или"
+
+#: templates/accounts/register.html:60
+msgid " Hisobingiz bormi? "
+msgstr "У Вас есть аккаунт?"
+
+#: templates/accounts/register.html:60
+msgid " Hozir kiring "
+msgstr "Войти"
+
+#: templates/base.html:44 templates/base_shop_all.html:37
+msgid "Bizning joylashuvimiz"
+msgstr "Наше место нахождения"
+
+#: templates/base.html:79 templates/base_shop_all.html:71
+msgid " Chiqish  "
+msgstr "Выход"
+
+#: templates/base.html:82 templates/base_shop_all.html:74
+msgid " Kirish "
+msgstr "Войти"
+
+#: templates/base.html:99
+msgid "Barcha bo'limlar"
+msgstr "Категории"
+
+#: templates/base.html:113 templates/base.html:205 templates/base.html:358
+#: templates/base_shop_all.html:105 templates/base_shop_all.html:189
+#: templates/base_shop_all.html:342
+msgid " Qidirish… "
+msgstr "Поиск..."
+
+#: templates/base.html:173 templates/base_shop_all.html:157
+#: templates/order-confirmed-shop.html:58
+#: templates/order-confirmed-variant.html:57 templates/order-confirmed.html:57
+#: templates/shop-cart.html:31 templates/shop-cart.html:106
+msgid " Jami "
+msgstr "Общий"
+
+#: templates/base.html:176 templates/base_shop_all.html:160
+msgid " Savatcha "
+msgstr "Корзина"
+
+#: templates/base.html:177 templates/base_shop_all.html:161
+#: templates/shop-cart.html:114
+msgid " Tasdiqlash "
+msgstr "Подтвердить"
+
+#: templates/base.html:213 templates/base.html:415
+#: templates/base_shop_all.html:197 templates/base_shop_all.html:399
+msgid " Katalog "
+msgstr "Каталог"
+
+#: templates/base.html:311
+msgid " Barchasini ko'rish... "
+msgstr "Увидеть все..."
+
+#: templates/base.html:318 templates/base_shop_all.html:302
+msgid " Barchasi "
+msgstr "Все"
+
+#: templates/base.html:406 templates/base_shop_all.html:390
+msgid " Asosiy "
+msgstr "Основной"
+
+#: templates/base.html:427 templates/base_shop_all.html:411
+msgid " Savat "
+msgstr "Корзина"
+
+#: templates/base.html:440 templates/index.html:105 templates/index.html:150
+#: templates/index.html:175 templates/index.html:217 templates/index.html:242
+#: templates/index.html:284 templates/index.html:354 templates/index.html:487
+#: templates/index.html:528 templates/index.html:553 templates/index.html:594
+#: templates/index.html:618 templates/index.html:660
+#: templates/shop-product-detail.html:518
+#: templates/shop-product-detail.html:707 templates/shopall.html:40
+#: templates/shopall.html:85
+msgid " Istaklar "
+msgstr "Избранное"
+
+#: templates/base.html:449 templates/base_shop_all.html:433
+msgid " Kabinet "
+msgstr "Кабинет"
+
+#: templates/base.html:489
+msgid " Yangiliklardan xabardor bo'lish "
+msgstr "Будьте в курсе новостей"
+
+#: templates/base.html:496
+msgid " Elektron pochtangizni kiriting "
+msgstr "Введите адрес электронной почты"
+
+#: templates/base.html:497
+msgid " Obuna boʻling "
+msgstr "Подписаться"
+
+#: templates/base.html:512
+msgid " Aloqa "
+msgstr "Для связи"
+
+#: templates/base.html:514
+msgid " Manzil "
+msgstr "Адрес"
+
+#: templates/base.html:514
+msgid " Tashkent, Cho'pon ota ko'chasi, 4B uy "
+msgstr "Ташкент, улица Чапаната 4B дом"
+
+#: templates/base.html:517
+msgid " Telefon "
+msgstr "Телефон"
+
+#: templates/base.html:520
+msgid " Ish vaqti "
+msgstr "Режим работы"
+
+#: templates/base.html:522
+msgid " Bizni kuzatib boring "
+msgstr "Подписывайтесь на нас"
+
+#: templates/base.html:536
+msgid " Savatni ko'rish "
+msgstr "Посмотреть корзину"
+
+#: templates/base.html:537
+msgid " Istaklar roʻyxatim "
+msgstr "Мой список желаний"
+
+#: templates/base.html:538
+msgid " Profil "
+msgstr "Профиль"
+
+#: templates/base.html:550
+msgid " MChJ "
+msgstr "ООО"
+
+#: templates/base.html:550
+msgid " STIR "
+msgstr "ИНН"
+
+#: templates/base.html:554
+msgid " Barcha huquqlar himoyalangan "
+msgstr "Все права защищены"
+
+#: templates/base.html:566
+msgid " Yuklanmoqda "
+msgstr "Загрузка"
+
+#: templates/base_shop_all.html:91
+msgid "Barcha Katalog"
+msgstr "Весь каталог"
+
+#: templates/base_shop_all.html:295
+msgid " Batafsil ko'rsatish... "
+msgstr "Показать больше..."
+
+#: templates/base_shop_all.html:424
+msgid " Saralangan "
+msgstr "Избранное"
+
+#: templates/checkout.html:81 templates/index.html:127 templates/index.html:129
+#: templates/index.html:131 templates/index.html:134 templates/index.html:139
+#: templates/index.html:141 templates/index.html:144 templates/index.html:194
+#: templates/index.html:196 templates/index.html:198 templates/index.html:201
+#: templates/index.html:206 templates/index.html:208 templates/index.html:211
+#: templates/index.html:261 templates/index.html:263 templates/index.html:265
+#: templates/index.html:268 templates/index.html:273 templates/index.html:275
+#: templates/index.html:278 templates/index.html:372 templates/index.html:374
+#: templates/index.html:375 templates/index.html:377 templates/index.html:382
+#: templates/index.html:384 templates/index.html:387 templates/index.html:505
+#: templates/index.html:507 templates/index.html:509 templates/index.html:512
+#: templates/index.html:517 templates/index.html:519 templates/index.html:522
+#: templates/index.html:571 templates/index.html:573 templates/index.html:575
+#: templates/index.html:578 templates/index.html:583 templates/index.html:585
+#: templates/index.html:588 templates/index.html:637 templates/index.html:639
+#: templates/index.html:641 templates/index.html:644 templates/index.html:649
+#: templates/index.html:651 templates/index.html:654 templates/index.html:723
+#: templates/index.html:725 templates/index.html:726 templates/index.html:728
+#: templates/index.html:733 templates/index.html:735 templates/index.html:738
+#: templates/index.html:768 templates/index.html:770 templates/index.html:771
+#: templates/index.html:773 templates/index.html:778 templates/index.html:780
+#: templates/index.html:783 templates/index.html:814 templates/index.html:816
+#: templates/index.html:817 templates/index.html:819 templates/index.html:824
+#: templates/index.html:826 templates/index.html:829
+#: templates/order-confirmed-shop.html:78
+#: templates/order-confirmed-variant.html:80 templates/order-confirmed.html:74
+#: templates/shop-cart.html:48 templates/shop-product-detail.html:356
+#: templates/shop-product-detail.html:360
+#: templates/shop-product-detail.html:718
+#: templates/shop-product-detail.html:719
+#: templates/shop-product-detail.html:722 templates/shop-wishlist.html:42
+#: templates/shop-wishlist.html:44 templates/shop.html:64
+#: templates/shop.html:66 templates/shop.html:68 templates/shop.html:71
+#: templates/shop.html:76 templates/shop.html:78 templates/shop.html:81
+#: templates/shop.html:298 templates/shop.html:300 templates/shopall.html:62
+#: templates/shopall.html:64 templates/shopall.html:66
+#: templates/shopall.html:69 templates/shopall.html:74
+#: templates/shopall.html:76 templates/shopall.html:79
+msgid " so'm "
+msgstr "сум"
+
+#: templates/index.html:20
+msgid "HOZIR SOTIB OL"
+msgstr "КУПИТЬ СЕЙЧАС"
+
+#: templates/index.html:46
+msgid "O'zbekiston bo'ylab yetkazib berish"
+msgstr ""
+
+#: templates/index.html:47
+msgid " 100 000 so'm yoki undan ko'p buyurtmalar"
+msgstr ""
+
+#: templates/index.html:57
+msgid " Bepul qaytish "
+msgstr ""
+
+#: templates/index.html:58
+msgid "30 kun ichida"
+msgstr ""
+
+#: templates/index.html:68
+msgid " Qo'llab-quvvatlash markazi "
+msgstr "Центр поддержки"
+
+#: templates/index.html:69
+msgid " 24/7 ajoyib xizmat "
+msgstr "Отличный сервис 24/7"
+
+#: templates/index.html:80 templates/index.html:446
+msgid " Tavsiya etiladi "
+msgstr "Рекомендуемые"
+
+#: templates/index.html:83 templates/index.html:449
+msgid " Mashhur "
+msgstr "Известные"
+
+#: templates/index.html:86
+msgid " Yangilar "
+msgstr "Новые"
+
+#: templates/index.html:302
+msgid " Ommabop "
+msgstr "Популярный"
+
+#: templates/index.html:302
+msgid " bo'limlar "
+msgstr "категории"
+
+#: templates/index.html:332
+msgid " Batafsil ma'lumot "
+msgstr "Узнать больше"
+
+#: templates/index.html:340
+msgid " Yangi kelganlar "
+msgstr "Новые поступления"
+
+#: templates/index.html:411 templates/index.html:465 templates/index.html:698
+#: templates/shop.html:318
+msgid " Hozir xarid qiling "
+msgstr "Купить сейчас"
+
+#: templates/index.html:422
+msgid " Tanlangan brendlar "
+msgstr "Выбранные бренды"
+
+#: templates/index.html:441
+msgid " Oylik "
+msgstr "Ежемесячно"
+
+#: templates/index.html:441
+msgid " eng yaxshi sotilgan "
+msgstr "бестселлер"
+
+#: templates/index.html:452
+msgid " Yangi qo'shildi "
+msgstr "Недавно добавлено"
+
+#: templates/index.html:705
+msgid " Kunlik eng ko'p sotilgan "
+msgstr "Ежедневный лидер продаж"
+
+#: templates/index.html:750
+msgid " Eng yaxshi sotilgan "
+msgstr "Лидер продаж"
+
+#: templates/index.html:796
+msgid " So'ngi Mahsulotlar "
+msgstr "Последние товары"
+
+#: templates/order-confirmed-shop.html:15
+#: templates/order-confirmed-variant.html:13 templates/order-confirmed.html:14
+msgid " Ortga "
+msgstr "Назад"
+
+#: templates/order-confirmed-shop.html:25
+#: templates/order-confirmed-variant.html:23 templates/order-confirmed.html:24
+msgid " Buyurtma uchun tashakkur! "
+msgstr "Спасибо за Ваш заказ"
+
+#: templates/order-confirmed-shop.html:26
+#: templates/order-confirmed-variant.html:24 templates/order-confirmed.html:25
+msgid " Tez orada siz bilan bog'lanamiz "
+msgstr "Скоро свяжемся с Вами"
+
+#: templates/order-confirmed-shop.html:31
+#: templates/order-confirmed-variant.html:29 templates/order-confirmed.html:30
+msgid " Buyurtma haqida qisqacha ma'lumot "
+msgstr "Краткая информация о заказе"
+
+#: templates/order-confirmed-shop.html:36
+#: templates/order-confirmed-variant.html:34 templates/order-confirmed.html:35
+msgid " Xaridor "
+msgstr "Клиент"
+
+#: templates/order-confirmed-shop.html:40
+#: templates/order-confirmed-variant.html:38 templates/order-confirmed.html:39
+msgid " Telefon raqam "
+msgstr "Номер телефона"
+
+#: templates/order-confirmed-shop.html:44
+#: templates/order-confirmed-variant.html:42 templates/order-confirmed.html:43
+msgid " Buyurtma sanasi "
+msgstr "Дата заказа"
+
+#: templates/order-confirmed-shop.html:55
+#: templates/order-confirmed-variant.html:53 templates/order-confirmed.html:54
+#: templates/shop-cart.html:26 templates/shop-notifications.html:23
+#: templates/shop-wishlist.html:24
+msgid " Mahsulot "
+msgstr "Товар"
+
+#: templates/order-confirmed-shop.html:56
+#: templates/order-confirmed-variant.html:54 templates/order-confirmed.html:55
+#: templates/shop-cart.html:28 templates/shop-product-detail.html:383
+#: templates/shop.html:161
+msgid " Rang "
+msgstr "Цвет"
+
+#: templates/order-confirmed-shop.html:57
+#: templates/order-confirmed-variant.html:55 templates/order-confirmed.html:56
+#: templates/shop-cart.html:29 templates/shop-product-detail.html:411
+#: templates/shop.html:179
+msgid " O'lcham "
+msgstr "Размер"
+
+#: templates/order-confirmed-variant.html:56
+msgid " Variant "
+msgstr "Вариант"
+
+#: templates/shop-cart.html:13
+msgid " Savatchangiz "
+msgstr "Ваша Корзина"
+
+#: templates/shop-cart.html:27 templates/shop-wishlist.html:25
+msgid " Narx "
+msgstr "Цена"
+
+#: templates/shop-cart.html:30
+msgid " Soni "
+msgstr "Количество"
+
+#: templates/shop-cart.html:32 templates/shop-notifications.html:26
+#: templates/shop-wishlist.html:27
+msgid " O'chirish "
+msgstr "Удалить"
+
+#: templates/shop-cart.html:77
+msgid " Savatchani tozalash "
+msgstr "Очистить корзину"
+
+#: templates/shop-cart.html:90
+msgid " Barcha mahsulotlar "
+msgstr "Все товары"
+
+#: templates/shop-notifications.html:11
+msgid " Bildirishnomalar "
+msgstr "Уведомления"
+
+#: templates/shop-notifications.html:25 templates/shop-wishlist.html:26
+msgid " Harakat "
+msgstr "Движение"
+
+#: templates/shop-notifications.html:42 templates/shop-product-detail.html:527
+#: templates/shop-wishlist.html:49
+msgid " Savatchaga qo'shish "
+msgstr "Добавить в корзину"
+
+#: templates/shop-product-detail.html:336
+msgid " Ishlab chiqaruvchi "
+msgstr "Производитель"
+
+#: templates/shop-product-detail.html:338 templates/shop.html:249
+msgid " Nashriyot "
+msgstr "Издатель"
+
+#: templates/shop-product-detail.html:340
+msgid " Muallif "
+msgstr "Автор"
+
+#: templates/shop-product-detail.html:349
+msgid " baho "
+msgstr "оценка"
+
+#: templates/shop-product-detail.html:358
+msgid " Chegirma "
+msgstr "Скидка"
+
+#: templates/shop-product-detail.html:370
+msgid " Ulashish "
+msgstr "Поделится"
+
+#: templates/shop-product-detail.html:487
+msgid " Muddatli To'lov "
+msgstr "Рассрочка"
+
+#: templates/shop-product-detail.html:496
+msgid " Teg "
+msgstr "Хештег"
+
+#: templates/shop-product-detail.html:504
+msgid " Mavjud "
+msgstr "Наличии"
+
+#: templates/shop-product-detail.html:504
+msgid " ta mahsulot "
+msgstr "товаров"
+
+#: templates/shop-product-detail.html:522
+msgid " Tavar kelganda xabar ol "
+msgstr "Получите уведомление о поступлении товара"
+
+#: templates/shop-product-detail.html:530
+msgid " Hoziroq xarid qil "
+msgstr "Купить сейчас"
+
+#: templates/shop-product-detail.html:549
+msgid " Tavsif "
+msgstr "Описание"
+
+#: templates/shop-product-detail.html:554
+msgid " Qo'shimcha ma'lumot "
+msgstr "Дополнительная информация"
+
+#: templates/shop-product-detail.html:558
+msgid " Izohlar "
+msgstr "Rомментарии"
+
+#: templates/shop-product-detail.html:593
+msgid " Mijozlarning savollari va javoblari "
+msgstr "Вопросы и ответы"
+
+#: templates/shop-product-detail.html:652
+msgid " Baholang "
+msgstr "Оцените"
+
+#: templates/shop-product-detail.html:670
+msgid " Izoh qoldirish "
+msgstr "Оставить комментарий"
+
+#: templates/shop-product-detail.html:691
+msgid " O'xshash mahsulotlar "
+msgstr "Похожие товары"
+
+#: templates/shop-wishlist.html:12
+msgid " Xohishlar "
+msgstr "Избранное"
+
+#: templates/shop.html:14 templates/shopall.html:14
+msgid " Barcha tavarlar "
+msgstr "Все товары"
+
+#: templates/shop.html:25 templates/shopall.html:25
+msgid " Biz siz uchun "
+msgstr "Мы для Вас нашли"
+
+#: templates/shop.html:25 templates/shopall.html:25
+msgid " ta mahsulot topdik"
+msgstr "товаров"
+
+#: templates/shop.html:27 templates/shop.html:150 templates/shop.html:280
+msgid " Saralash "
+msgstr "Фильтр"
+
+#: templates/shop.html:196
+msgid " Mavsum "
+msgstr "Сезон"
+
+#: templates/shop.html:213
+msgid " Kitob muallifalri "
+msgstr "Авторы книг"
+
+#: templates/shop.html:231
+msgid " Muqova "
+msgstr ""
+
+#: templates/shop.html:266
+msgid " Til "
+msgstr "Язык"
+
+#: templates/shop.html:287
+msgid " Yangi mahsulotlar "
+msgstr "Новые товары"
+
+#: templates/shop.html:327
+msgid " Ishlab chiqaruvchilar "
+msgstr "Производитель"
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:5
+msgid "Select an image to embed"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:27
+msgid "Browse for the image you want, then click 'Embed Image' to continue..."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:29
+msgid ""
+"No images found. Upload images using the 'Image Button' dialog's 'Upload' "
+"tab."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:50
+msgid "Images in: "
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:62
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:80
+msgid "Embed Image"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:146
+msgid "Play Slideshow"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:147
+msgid "Pause Slideshow"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:148
+msgid "&lsaquo; Previous Photo"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:149
+msgid "Next Photo &rsaquo;"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:150
+msgid "Next &rsaquo;"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/ckeditor_uploader/templates/ckeditor/browse.html:151
+msgid "&lsaquo; Prev"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:7
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:220
+msgid "The install worked successfully! Congratulations!"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:206
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:221
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" "
+"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
+"configured any URLs."
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:229
+msgid "Django Documentation"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:230
+msgid "Topics, references, &amp; how-to’s"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:238
+msgid "Tutorial: A Polling App"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:239
+msgid "Get started with Django"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:247
+msgid "Django Community"
+msgstr ""
+
+#: venv/lib/python3.10/site-packages/django/views/templates/default_urlconf.html:248
+msgid "Connect, get help, or contribute"
+msgstr ""

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load django_template_maths %}
+{% load i18n %}
+
+
+{% block content %}
+
+<div class="shadow p-3 mb-30 bg-white rounded container ">
+    <div class="card-body">
+        <div>
+            <a href="{% url 'accounts:profile' %}" style="font-size: 16px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5"/>
+              </svg> {% blocktranslate %} Ortga {% endblocktranslate %}
+            </a>
+        </div>
+        <div class="text-center py-4 mb-4">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-check2-circle text-success" viewBox="0 0 16 16">
+                    <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0"/>
+                    <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
+                </svg>
+            </div>
+            <h1 class="h3 mb-3 fw-600">{% blocktranslate %} Buyurtma uchun tashakkur! {% endblocktranslate %}</h1>
+            <h2 class="h5">{% blocktranslate %} Tez orada siz bilan bog'lanamiz {% endblocktranslate %}</h2>
+            
+            
+        </div>
+        <div class="mb-4">
+            <h5 class="fw-600 mb-3 fs-17 pb-2">{% blocktranslate %} Buyurtma haqida qisqacha ma'lumot {% endblocktranslate %}</h5>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table">
+                        <tbody><tr>
+                            <td class="w-50 fw-600">{% blocktranslate %} Xaridor {% endblocktranslate %}:</td>
+                            <td>{{ order.user.first_name }} {{ order.user.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-50 fw-600">{% blocktranslate %} Telefon raqam {% endblocktranslate %}:</td>
+                            <td>{{ order.phone_number }}</td>
+                        </tr>
+                        <tr>
+                            <td class="w-50 fw-600">{% blocktranslate %} Buyurtma sanasi {% endblocktranslate %}:</td>
+                            <td>{{ order.create_at }}</td>
+                        </tr>
+                    </tbody></table>
+                </div>
+            </div>
+        </div>
+        <div>
+                <table class="table table-responsive-md">
+                    <thead>
+                    <tr>
+                        <th colspan="2">{% blocktranslate %} Mahsulot {% endblocktranslate %}</th>
+                        <th>{% blocktranslate %} Rang {% endblocktranslate %}</th>
+                        <th>{% blocktranslate %} O'lcham {% endblocktranslate %}</th>
+                        <th>{% blocktranslate %} Jami {% endblocktranslate %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    {% for order_item in order.order_item.all %}
+                        <tr>
+                            
+                            <td class="image product-thumbnail" >
+                                <img src="{{ order_item.product_image.image.url }}" alt="{{ order_item.product.title }}">
+                            </td>
+                            <td>
+                                {{ order_item.product.title }}
+                            </td>
+                            <td>
+                                {{ order_item.product_color }}
+                            </td>
+                            <td>
+                                {{ order_item.product_size }}
+                            </td>
+                            <td>{{ order_item.quenty }} x - {{ order_item.product_price|mul:order_item.quenty|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,187 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block static %}
+
+<style>
+    .lan_btn{
+        margin: 0 !important;
+        padding: 15px 30px !important;
+        background-color: #fff !important;
+        color: #242424 !important;
+        font-size: 14px !important;
+    }
+
+    .lan-btn-hover button:hover {
+        background-color: #fff !important;
+    }
+</style>
+
+
+{% endblock static %}
+{% block content %}
+    <main class="main">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="{% url 'products:home' %}" rel="nofollow">{% blocktranslate %} Bosh Sahifa {% endblocktranslate %}</a>
+                    <span></span> {% blocktranslate %} Mening hisobim {% endblocktranslate %}
+                </div>
+            </div>
+        </div>
+        <section class="pt-150 pb-150">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 m-auto">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="dashboard-menu">
+                                    <ul class="nav flex-column" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="dashboard-tab" data-bs-toggle="tab" href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false"><i class="fa fa-atom mr-15"></i>{% blocktranslate %} Boshqaruv paneli {% endblocktranslate %}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="orders-tab" data-bs-toggle="tab" href="#orders" role="tab" aria-controls="orders" aria-selected="false"><i class="fa fa-shopping-basket mr-15"></i>{% blocktranslate %} Buyurtmalar {% endblocktranslate %}</a>
+                                        </li>
+                                        <li class="nav-item lan-btn-hover">
+                                            <form action="{% url 'set_language' %}" method="post">
+                                                {% csrf_token %}
+                                                {% get_current_language as LANGUAGE_CODE %}
+                                                {% get_available_languages as LANGUAGES %}
+                                                {% for language in LANGUAGES %}
+                                                    {% if language.0 != LANGUAGE_CODE %}
+                                                    
+                                                    <button class="nav-link lan_btn" type="submit" name="language" value="{{ language.0 }}">
+                                                        <i class="fa fa-globe-americas mr-15" style="color: #90908e !important"></i>
+                                                        <span>{{ language.1 }}</span>
+                                                    </button>
+                                                  {% endif %}
+                                                {% endfor %}
+                                              </form>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="account-detail-tab" data-bs-toggle="tab" href="#account-detail" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fa fa-user-edit mr-15"></i>{% blocktranslate %} Hisob tafsilotlari {% endblocktranslate %}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="change-password" data-bs-toggle="tab" href="#change_password" role="tab" aria-controls="account-detail" aria-selected="true"><i class="fa fa-user-edit mr-15"></i>{% blocktranslate %} Parolni o'zgartirish{% endblocktranslate %}</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'accounts:logout' %}"><i class="fa fa-lock mr-15"></i>{% blocktranslate %} Chiqish {% endblocktranslate %}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="tab-content dashboard-content">
+                                    <div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">{% blocktranslate %} Assalomu alaykum {% endblocktranslate %} {{ request.user.get_full_name }} </h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>{% blocktranslate %} Hisobingiz boshqaruv panelida siz so'nggi buyurtmalaringizni osongina tekshirishingiz va ko'rishingiz, parol va hisob ma'lumotlarini tahrirlashingiz mumkin. {% endblocktranslate %}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5 class="mb-0">{% blocktranslate %} Buyurtmalaringiz {% endblocktranslate %}</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>{% blocktranslate %} Buyurtma {% endblocktranslate %}</th>
+                                                                <th>{% blocktranslate %} Sana {% endblocktranslate %}</th>
+                                                                <th>{% blocktranslate %} Holat {% endblocktranslate %}</th>
+                                                                <th>{% blocktranslate %} Harakatlar {% endblocktranslate %}</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {% for my_order in my_order %}
+                                                                <tr>
+                                                                    <td>{{ forloop.counter }}</td>
+                                                                    <td>{{ my_order.create_at }}</td>
+                                                                    <td>{{ my_order.status }}</td>
+                                                                    
+                                                                    <td><a href="{% url 'accounts:order_detail' my_order.uuid %}" class="btn-small d-block">{% blocktranslate %} Ko'rish {% endblocktranslate %}</a></td>
+                                                                </tr>
+                                                            {% endfor %}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+
+                                    <div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>{% blocktranslate %} Hisob tafsilotlari {% endblocktranslate %}</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <form method="post" action="{% url 'accounts:profile-edit' %}" enctype="multipart/form-data">{% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="form-group col-md-6">
+                                                            <label>{% blocktranslate %} Ism {% endblocktranslate %} <span class="required">*</span></label>
+                                                            <input required="" class="form-control square" name="first_name" type="text" value="{{ request.user.first_name }}">
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            <label>{% blocktranslate %} Familiya {% endblocktranslate %} <span class="required">*</span></label>
+                                                            <input required="" class="form-control square" name="last_name" value="{{ request.user.last_name }}">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>{% blocktranslate %} Rasm {% endblocktranslate %}</label>
+                                                            <input required="" class="form-control squares" name="photo" type="file">
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn btn-fill-out submit" name="submit" value="Submit">{% blocktranslate %} Saqlash {% endblocktranslate %}</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="change_password" role="tabpanel" aria-labelledby="change-password">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h5>{% blocktranslate %} Parolni o'zgartirish {% endblocktranslate %}</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <form method="post" action="{% url 'accounts:password_change' %}">{% csrf_token %}
+                                                    <div class="row">
+                                                        <div class="form-group col-md-12">
+                                                            <label>{% blocktranslate %} Joriy parol {% endblocktranslate %} <span class="required">*</span></label>
+                                                            <input required="" class="form-control square" name="old_password" type="password">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>{% blocktranslate %} Yangi parol {% endblocktranslate %} <span class="required">*</span></label>
+                                                            <input required="" class="form-control square" name="new_password1" type="password">
+                                                        </div>
+                                                        <div class="form-group col-md-12">
+                                                            <label>{% blocktranslate %} Parolni tasdiqlang {% endblocktranslate %} <span class="required">*</span></label>
+                                                            <input required="" class="form-control square" name="new_password2" type="password">
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <button type="submit" class="btn btn-fill-out submit" name="submit" value="Submit">{% blocktranslate %} Saqlash {% endblocktranslate %}</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+{% endblock content %}

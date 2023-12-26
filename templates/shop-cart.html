@@ -1,0 +1,125 @@
+﻿{% extends 'base.html' %}
+{% load humanize %}
+{% load django_template_maths %}
+{% load i18n %}
+
+{% block content %}
+    <main class="main">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html" rel="nofollow">{% blocktranslate %} Bosh Sahifa {% endblocktranslate %}</a>
+                
+                    <span></span> {% blocktranslate %} Savatchangiz {% endblocktranslate %}
+                </div>
+            </div>
+        </div>
+        <section class="mt-60 mb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table shopping-summery text-center clean">
+                                <thead>
+                                    <tr class="main-heading">
+                                        <th scope="col">{% blocktranslate %} Rasm {% endblocktranslate %}</th>
+                                        <th scope="col">{% blocktranslate %} Mahsulot {% endblocktranslate %}</th>
+                                        <th scope="col">{% blocktranslate %} Narx {% endblocktranslate %}</th>
+                                        <th scope="col">{% blocktranslate %} Rang {% endblocktranslate %}</th>
+                                        <th scope="col">{% blocktranslate %} O'lcham {% endblocktranslate %}</th>
+                                        <th scope="col">{% blocktranslate %} Soni {% endblocktranslate %}</th>
+                                        <th scope="col">{% blocktranslate %} Jami {% endblocktranslate %}</th>
+                                        <th scope="col">{% blocktranslate %} O'chirish {% endblocktranslate %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for shopcart in shopcart %}
+                                        <tr>
+                                            {% if shopcart.product.product_images.first.image.url %}
+                                                <td class="image product-thumbnail"><img src="{{ shopcart.product_image.image.url }}" alt="#"></td>
+                                            {% endif %}
+                                            <td class="product-des product-name">
+                                                <p class="product-name"><a href="{% url 'products:shop_detail' shopcart.product.slug shopcart.product.uuid %}">{{ shopcart.product.title }}</a></p>
+                                                <p class="font-xs">{{ shopcart.product.desc|slice:100|safe }}
+                                                </p>
+                                            </td>
+                                            <td class="price" data-title="Price">
+                                                
+                                                <span class="text-brand">{{ shopcart.product_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span>
+                                               
+                                            </td>
+                                            
+                                            <td class="text-center" data-title="Color">
+                                                    <span class="qty-val">{{ shopcart.product_color.name }}</span>                                               
+                                            </td>
+                                            <td class="text-center" data-title="Size">
+                                                <span class="qty-val">{{ shopcart.product_size.name }}</span>                                               
+                                            </td>
+                                            <td class="text-center" data-title="Quantity">
+                                                
+                                                   
+                                                    <span class="qty-val">{{ shopcart.quenty }} x</span>
+                                               
+                                            </td>
+                                            <td class="text-right" data-title="Subtotal">
+                                                <span>
+                                                    {{ shopcart.product_price|mul:shopcart.quenty|floatformat:0|intcomma }}
+                                                </span>
+                                            </td>
+                                            <td class="action" data-title="Remove"><a href="{% url 'order:shop_cart_delete' shopcart.uuid %}" class="text-muted"><i class="fa fa-trash-alt"></i></a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    
+                                    <tr>
+                                        {% if shopcart|length == 0 %}
+                                        {% else %}
+                                        <td colspan="6" class="text-end">
+                                            <a href="{% url 'order:shop_delete_all' %}" class="text-muted"> <i class="fa fa-times-circle"></i> {% blocktranslate %} Savatchani tozalash {% endblocktranslate %}</a>
+                                        </td>
+                                        {% endif %}
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="divider center_icon mt-50 mb-50"><i class="fa fa-gem"></i></div>
+                        <div class="row mb-50">
+                            
+                            <div class="col-lg-12 col-md-12">
+                                <div class="border p-md-4 p-30 border-radius-10 cart-totals">
+                                    <div class="heading_s1 mb-3">
+                                        <h4>{% blocktranslate %} Barcha mahsulotlar {% endblocktranslate %}</h4>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <tbody>
+                                                {% for shopcart in shopcart %}
+                                                    <tr>
+                                                            <td class="cart_total_label">{{ shopcart.product.title }}</td>
+                                                            <td class="cart_total_amount"><span class="font-lg fw-900 text-brand">
+                                                            
+                                                                {{ shopcart.product_price|mul:shopcart.quenty|floatformat:0|intcomma }}
+                                                            </span></td>
+                                                           
+                                                    </tr>
+                                                {% endfor %}
+                                                <tr>
+                                                    <td class="cart_total_label">{% blocktranslate %} Jami {% endblocktranslate %}</td>
+                                                    <td class="cart_total_amount"><strong><span class="font-xl fw-900 text-brand">{{ all_price|intcomma }}</span></strong></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    {% if shopcart|length == 0 %}
+                                    {% else %}
+                                        <a href="{% url "order:order_create" %}" class="btn btn-rounded"> <i class="fa fa-share-square mr-10"></i>{% blocktranslate %} Tasdiqlash {% endblocktranslate %}</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}
+    

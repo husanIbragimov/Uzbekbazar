@@ -1,0 +1,62 @@
+﻿{% extends 'base.html' %}
+{% load humanize %}
+{% load i18n %}
+
+{% block content %}
+    <main class="main">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html" rel="nofollow">{% blocktranslate %} Bosh Sahifa {% endblocktranslate %}</a>
+                 
+                    <span></span> {% blocktranslate %} Xohishlar {% endblocktranslate %}
+                </div>
+            </div>
+        </div>
+        <section class="mt-60 mb-60">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="table-responsive">
+                            <table class="table shopping-summery text-center">
+                                <thead>
+                                    <tr class="main-heading">
+                                        <th scope="col" colspan="2">{% blocktranslate %} Mahsulot {% endblocktranslate %}</th>
+                                        <th scope="col">{% blocktranslate %} Narx {% endblocktranslate %}</th>
+                                        <th scope="col">{% blocktranslate %} Harakat {% endblocktranslate %}</th>
+                                        <th scope="col">{% blocktranslate %} O'chirish {% endblocktranslate %}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for wishlist in wishlist %}
+                                        <tr>
+                                            
+                                            <td class="image product-thumbnail"><img src="{{ wishlist.product.product_images.first.image.url }}" alt="#"></td>
+                                            <td class="product-des product-name">
+                                                <p class="product-name"><a href="{% url 'products:shop_detail' wishlist.product.slug  wishlist.product.uuid %}">{{ wishlist.product.title }}</a></p>
+                                                <p class="font-xs">{{ wishlist.product.desc|safe|slice:100 }}
+                                                </p>
+                                            </td>
+                                            <td class="price" data-title="Price">
+                                                {% if wishlist.product.percentage %}
+                                                    <span class="text-brand">{{ wishlist.product.get_discount_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span>
+                                                {% else %}
+                                                    <span class="text-brand">{{ wishlist.product.get_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span>
+                                                {% endif %}
+                                            </td>
+                                            
+                                            <td class="text-right" data-title="Cart">
+                                                <a href="{% url 'order:shop_cart_product' wishlist.product.uuid %}" class="btn btn-rounded btn-sm"><i class="far fa-shopping-bag mr-5"></i>{% blocktranslate %} Savatchaga qo'shish {% endblocktranslate %}</a>
+                                            </td>
+                                            <td class="action" data-title="Remove"><a href="{% url 'order:wishlist_delete' wishlist.uuid  %}"><i class="fa fa-trash-alt"></i></a></td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock content %}

@@ -1,0 +1,349 @@
+﻿{% extends 'base.html' %}
+{% load django_template_maths %}
+{% load i18n %}
+
+{% load humanize %}
+
+
+    {% block content %}
+    <main class="main">
+        <div class="page-header breadcrumb-wrap">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="{% url 'products:home' %}" rel="nofollow">{% blocktranslate %} Bosh Sahifa {% endblocktranslate %}</a>
+                    <span></span> <a href="{% url 'products:shop' %}">{% blocktranslate %} Barcha tavarlar {% endblocktranslate %}</a> <span></span> <a href="{% url 'products:shop' category.uuid %}">{{ category }}</a>{% if sub_cat %}<span></span><a href="{% url 'products:shop' sub_cat.uuid %}">{{ sub_cat }}</a>{% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <section class="mt-60 mb-60">
+            <div class="container">
+                <div class="row flex-row-reverse">
+                    <div class="col-lg-9">
+                        <div class="shop-product-fillter">
+                            <div class="totall-product">
+                                <p> {% blocktranslate %} Biz siz uchun {% endblocktranslate %} <strong class="text-brand">{{ products|length }}</strong> {% blocktranslate %} ta mahsulot topdik{% endblocktranslate %}!</p>
+                            </div>
+                            <a href="#filter_box" class="btn btn-sm btn-default d-lg-none"><i class="fa fa-filter mr-5 ml-0"></i>{% blocktranslate %} Saralash {% endblocktranslate %}</a>
+                            
+                        </div>
+                        <div class="row product-grid-3">
+                            {% for product in products %}
+                                <div class="col-lg-4 col-md-4 col-12 col-sm-6">
+                                    <div class="product-cart-wrap mb-30">
+                                        <div class="product-img-action-wrap">
+                                            <div class="product-img product-img-zoom">
+                                                <a href="{% url 'products:shop_detail' product.slug  product.uuid %}">
+                                                    <img class="default-img" src="{{ product.product_images.first.image.url }}" alt="">
+                                                    <img class="hover-img" src="{{ product.product_images.last.image.url }}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="product-action-1">
+                                                <a aria-label="Istaklar" class="action-btn hover-up" href="{% url 'order:wishlist_product' product.uuid %}"><i class="far fa-heart"></i></a>
+                                            </div>
+                                            <div class="product-badges product-badges-position product-badges-mrg">
+                                                <span class="{{ product.status }}">{% if product.status %}{{ product.status }}{% endif %}</span>
+                                            </div>
+                                        </div>
+                                        <div class="product-content-wrap">
+                                            <div class="product-category">
+                                                {% if product.brand %}
+                                                    <a href="#">{{ product.brand }}</a>
+                                                {% else %}
+                                                    <pre> </pre>
+                                                {% endif %}
+                                            </div>
+                                            <h2 style="height: 50px;"><a href="{% url 'products:shop_detail' product.slug  product.uuid %}">{{ product.title|slice:":60" }}</a></h2>
+                                            <div class="product-rate">
+                                                <div class="product-rating"
+                                                     style="width:{{ product.mid_stars_percent }}%"></div>
+                                            </div>
+                                            <div class="product-price">
+                                                {% if product.percentage %}
+                                            
+                                                    <span class="old-price" >{{ product.get_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span><br>
+                                                    {% if product.variant.first.get_children.first %}
+                                                    <span class="new-price">{{ product.get_discount_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span><br>
+                                                    
+                                                    <span class="variant-price">{{ product.get_discount_price|mul:product.variant.first.get_children.first.percent|div:100|add:product.get_discount_price|div:product.variant.first.get_children.first.duration|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}/oyiga</span>
+                                                    {% else %}
+                                        
+                                                    <span class="variant-price">{{ product.get_discount_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span><br>
+                                                    {% endif %}
+
+                                                {% else %}
+                                                    {% if product.variant.first.get_children.first %}
+                                                    <span class="new-price mt-30">{{ product.get_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span><br>
+                                                    
+                                                    <span class="variant-price mt-30">{{ product.get_price|mul:product.variant.first.get_children.first.percent|div:100|add:product.get_price|div:product.variant.first.get_children.first.duration|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}/oyiga</span>
+                                                    {% else %}
+                                                    <br>
+                                                    <span class="variant-price">{{ product.get_price|floatformat:0|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</span><br>
+                                                    {% endif %}
+                                                    <pre> </pre>
+                                                {% endif %}
+                                            </div>
+                                            <div class="product-action-1 show">
+                                                <a aria-label="Istaklar" class="action-btn hover-up d-lg-none" href="{% url 'order:wishlist_product' product.uuid %}"><i class="far fa-heart"></i></a>
+
+                                                <a aria-label="Savatchaga" class="action-btn hover-up" href="{% url 'order:shop_cart_product' product.uuid %}"><i class="far fa-shopping-bag"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <!--pagination-->
+                        <div class="pagination-area mt-15 mb-md-5 mb-lg-0">
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-start">
+                                    {% if products.has_previous %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ products.previous_page_number }}"><i class="fa fa-angle-left"></i></a>
+                                        </li>
+                                    {% endif %}
+
+                                    <li class="page-item active">
+                                        <a href="#" class="page-link">{{ products.number }}</a>
+                                    </li>
+                                    {% if products.has_next %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ products.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+
+                                    {% endif %}
+
+                                </ul>
+                            </nav>
+{#                            <nav aria-label="Page navigation example">#}
+{#                                <ul class="pagination justify-content-start">#}
+{#                                    <li class="page-item active"><a class="page-link" href="#">01</a></li>#}
+{#                                    <li class="page-item"><a class="page-link" href="#">02</a></li>#}
+{#                                    <li class="page-item"><a class="page-link" href="#">03</a></li>#}
+{#                                    <li class="page-item"><a class="page-link dot" href="#">...</a></li>#}
+{#                                    <li class="page-item"><a class="page-link" href="#">16</a></li>#}
+{#                                    <li class="page-item"><a class="page-link" href="#"><i class="fa fa-angle-right"></i> </a></li>#}
+{#                                </ul>#}
+{#                            </nav>#}
+                        </div>
+                    </div>
+                    <div class="col-lg-3 primary-sidebar sticky-sidebar"  id="filter_box" >
+                        <div class="widget-area">
+                            <!--Widget categories-->
+                            <div class="sidebar-widget widget_categories mb-30 p-30 bg-grey border-radius-10">
+                                <div class="widget-header position-relative mb-20 pb-10">
+                                    <h5 class="widget-title mb-10">Turkumlar</h5>
+                                    <div class="bt-1 border-color-1"></div>
+                                </div>
+                                <div class="overflow-auto p-3" style="max-width: 100%; max-height: 400px;">
+                                    <ul class="categor-list">
+                                        <li><a href="{% url 'products:shop' category.uuid %}">{{ category.name }}</a></li>
+                                        {% for category_child in category.get_children %}
+                                            {% for sub_category in category_child.get_children %}
+                                                <li class="cat-item text-muted ml-5"><a href="{% url 'products:shop' sub_category.uuid %}">{{ sub_category.name }}</a>{{ sub_category.category_products.all|length }}</li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Fillter By Price -->
+                            <form action="{% url 'products:shop' category.uuid %}" method="post">{% csrf_token %}
+                                <div class="sidebar-widget price_range range mb-30">
+                                    <div class="widget-header position-relative mb-20 pb-10">
+                                        <h5 class="widget-title mb-10">{% blocktranslate %} Saralash {% endblocktranslate %}</h5>
+                                        <div class="bt-1 border-color-1"></div>
+                                    </div>
+                                    
+                                   
+                                    <div class="list-group">
+                                       
+                                        {% if category.is_colors %}
+                                            <div class="sidebar-widget widget_categories mb-30 p-30 bg-grey border-radius-10 overflow-auto">
+                                                <div class="overflow-auto d-flex" style="max-width: 300px; max-height: 300px;">
+                                                    <div class="list-group-item mb-10 mt-10">
+                                                        <label class="fw-900">{% blocktranslate %} Rang {% endblocktranslate %}</label>
+                                                        <div class="">
+                                                            {% for color in colors %}
+                                                                
+                                                                <input style='background-color: {{ color.code }}; border-color: {% if color.code == '#fffff' %} #000000; {% endif %} z-index: 1; width: 20px; height: 20px;' class="form-check-input ml-10" type="checkbox" name="color" id="colorCheckbox{{ forloop.counter }}" value="{{ color.id }}" {% if color.id in filter_request.color %} checked {% endif %}/>
+                                                                <label class="form-check-label" for="colorCheckbox{{ forloop.counter }}"><span>{{ color.name }}</span></label>
+                                                                <br>
+                                                                
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                        {% if category.is_size %}
+                                            <div class="sidebar-widget widget_categories mb-30 p-30 bg-grey border-radius-10">
+                                                <div class="overflow-auto d-flex" style="max-width: 300px; max-height: 300px;">
+                                                    <div class="list-group-item mb-10 mt-10">
+                                                        <label class="fw-900">{% blocktranslate %} O'lcham {% endblocktranslate %}</label>
+                                                        <div class="custome-checkbox">
+                                                            {% for size in size %}
+                                                                <input class="form-check-input" type="checkbox" name="size" id="sizeCheckbox{{ forloop.counter }}" value="{{ size.id }}" {% if size.id in filter_request.size %} checked {% endif %}>
+                                                                <label class="form-check-label" for="sizeCheckbox{{ forloop.counter }}"><span>{{ size.name }}</span></label>
+                                                                <br>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        {% endif %}
+                                        {% if category.is_season %}
+                                            <div class="sidebar-widget widget_categories mb-30 p-30 bg-grey border-radius-10">
+                                                <div class="overflow-auto d-flex" style="max-width: 300px; max-height: 300px;">
+                                                    <div class="list-group-item mb-10 mt-10">
+                                                        <label class="fw-900">{% blocktranslate %} Mavsum {% endblocktranslate %}</label>
+                                                        <div class="custome-checkbox">
+                                                            {% for season in season %}
+                                                                <input class="form-check-input" type="checkbox" name="season" id="seasonCheckbox{{ forloop.counter }}" value="{{ season.id }}" {% if season.id in filter_request.season %} checked {% endif %}>
+                                                                <label class="form-check-label" for="seasonCheckbox{{ forloop.counter }}"><span>{{ season.name }}</span></label>
+                                                                <br>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        {% endif %}
+                                        {% if category.is_authorBook %}
+                                            <div class="sidebar-widget widget_categories mb-30 p-30 bg-grey border-radius-10">
+                                                <div class="overflow-auto d-flex" style="max-width: 300px; max-height: 300px;">
+                                                    <div class="list-group-item mb-10 mt-10">
+                                                        <label class="fw-900">{% blocktranslate %} Kitob muallifalri {% endblocktranslate %}</label>
+                                                        <div class="custome-checkbox">
+                                                            {% for authbook in authbook %}
+                                                                <input class="form-check-input" type="checkbox" name="authbook" id="authbookCheckbox{{ forloop.counter }}" value="{{ authbook.id }}" {% if authbook.id in filter_request.authbook %} checked {% endif %}>
+                                                                <label class="form-check-label" for="authbookCheckbox{{ forloop.counter }}"><span>{{ authbook.name }}</span></label>
+                                                                <br>
+                                                            {% endfor %}
+        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        {% endif %}
+                                        {% if category.is_coverBook %}
+                                            <div class="sidebar-widget widget_categories mb-30 p-30 bg-grey border-radius-10">
+                                                <div class="overflow-auto d-flex" style="max-width: 300px; max-height: 300px;">
+                                                    <div class="list-group-item mb-10 mt-10">
+                                                        <label class="fw-900">{% blocktranslate %} Muqova {% endblocktranslate %}</label>
+                                                        <div class="custome-checkbox">
+                                                            {% for coverbook in coverbook %}
+                                                                <input class="form-check-input" type="checkbox" name="coverbook" id="coverbookCheckbox{{ forloop.counter }}" value="{{ coverbook.id }}" {% if coverbook.id in filter_request.coverbook %} checked {% endif %}>
+                                                                <label class="form-check-label" for="coverbookCheckbox{{ forloop.counter }}"><span>{{ coverbook.name }}</span></label>
+                                                                <br>
+                                                            {% endfor %}
+        
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        {% endif %}
+                                        {% if category.is_publisherBook %}
+                                            <div class="sidebar-widget widget_categories mb-30 p-30 bg-grey border-radius-10">
+                                                <div class="overflow-auto d-flex" style="max-width: 300px; max-height: 300px;">
+                                                    <div class="list-group-item mb-10 mt-10">
+                                                        <label class="fw-900">{% blocktranslate %} Nashriyot {% endblocktranslate %}</label>
+                                                        <div class="custome-checkbox">
+                                                            {% for publisherbook in publisherbook %}
+                                                                <input class="form-check-input" type="checkbox" name="publisherbook" id="publisherbookCheckbox{{ forloop.counter }}" value="{{ publisherbook.id }}" {% if publisherbook.id in filter_request.publisherbook %} checked {% endif %}>
+                                                                <label class="form-check-label" for="publisherbookCheckbox{{ forloop.counter }}"><span>{{ publisherbook.name }}</span></label>
+                                                                <br>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        {% endif %}
+                                        {% if category.is_languageBook %}
+                                            <div class="sidebar-widget widget_categories mb-30 p-30 bg-grey border-radius-10">
+                                                <div class="overflow-auto d-flex" style="max-width: 300px; max-height: 300px;">
+                                                    <div class="list-group-item mb-10 mt-10">
+                                                        <label class="fw-900">{% blocktranslate %} Til {% endblocktranslate %}</label>
+                                                        <div class="custome-checkbox">
+                                                            {% for languagebook in languagebook %}
+                                                                <input class="form-check-input" type="checkbox" name="languagebook" id="languagebookCheckbox{{ forloop.counter }}" value="{{ languagebook.id }}" {% if languagebook.id in filter_request.languagebook %} checked {% endif %}>
+                                                                <label class="form-check-label" for="languagebookCheckbox{{ forloop.counter }}"><span>{{ languagebook.name }}</span></label>
+                                                                <br>
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-default w-100"><i class="fa fa-filter mr-5 ml-0"></i> {% blocktranslate %} Saralash {% endblocktranslate %}</button>
+                                </div>
+                            </form>
+                            
+                            <!-- Product sidebar Widget -->
+                            <div class="sidebar-widget product-sidebar  mb-30 p-30 bg-grey border-radius-10">
+                                <div class="widget-header position-relative mb-20 pb-10">
+                                    <h5 class="widget-title mb-10">{% blocktranslate %} Yangi mahsulotlar {% endblocktranslate %}</h5>
+                                    <div class="bt-1 border-color-1"></div>
+                                </div>
+                                {% for new_products in new_products %}
+                                    <div class="single-post clearfix">
+                                        <div class="image">
+                                            <img src="{{ new_products.product_images.first.image.url }}" alt="#">
+                                        </div>
+                                        <div class="content pt-10">
+                                            <h5><a href="{% url 'products:shop_detail' new_products.slug  new_products.uuid %}">{{ new_products.title }}</a></h5>
+                                            {% if product.percentage %}
+                                                <p class="price mb-0 mt-5">{{ new_products.get_discount_price|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</p>
+                                            {% else %}
+                                                <p class="price mb-0 mt-5">{{ new_products.get_price|intcomma }} {% blocktranslate %} so'm {% endblocktranslate %}</p>
+                                            {% endif %}
+                                            <div class="product-rate">
+                                                <div class="product-rating"
+                                                     style="width:{{ new_products.mid_stars_percent|intcomma }}%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <!--Widget ads-->
+                            <div class="sidebar-widget widget-ads mb-30">
+                                <div class="banner-img banner-1 wow fadeIn  animated" style="visibility: visible; animation-name: fadeIn;">
+                                    {% if monthly_best_sell.photo.url %}
+                                        <img class="border-radius-10" src="{{ monthly_best_sell.photo.url }}" alt="">
+                                    {% endif %}
+                                    <div class="banner-text">
+                                        {{ monthly_best_sell.name|safe }}
+                                        <a href="{% url 'products:shop' %}">{% blocktranslate %} Hozir xarid qiling {% endblocktranslate %} <i class="fa fa-arrow-right"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Widget categories-->
+                            {% if category.is_brend %}
+                            <div class="overflow-auto" style="max-width: 300px; max-height: 300px;">
+                                <div class="sidebar-widget widget_categories mb-50 p-30 bg-grey border-radius-10">
+                                    <div class="widget-header position-relative mb-20 pb-10">
+                                        <h5 class="widget-title mb-10">{% blocktranslate %} Ishlab chiqaruvchilar {% endblocktranslate %}</h5>
+                                        <div class="bt-1 border-color-1"></div>
+                                    </div>
+                                    <div class="">
+                                        <ul class="categor-list">
+                                            {% for brend in brend %}
+                                                <li class="cat-item text-muted"><a href="#">{{ brend.name }}</a>{{ brend.brand_products.all|length }}</li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    {% endblock content %}
+
+   
