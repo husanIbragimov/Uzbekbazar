@@ -7,14 +7,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>{% block title %} Azbo {% endblock title %}</title>
+    <title>{% block title %} UzbekBazar {% endblock title %}</title>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
    
     
     <meta name="description"
-    content="{% block meta_description %}azbo uz, azbo ,azbo online market, azbo internet dukani, azbo solfy, solfy karta, azbo kredit, kridit azbo, telefonlar, noutbooklar, televizorlar{% endblock %}">
+    content="{% block meta_description %}Uzbek bazar uz, Uzbek bazar ,Uzbek bazar online market, Uzbek bazar internet dukani, Uzbek bazar solfy, solfy karta, Uzbek bazar kredit, kridit Uzbek bazar, telefonlar, noutbooklar, televizorlar{% endblock %}">
     <meta name="keywords"
-    content="{% block meta_keywords %}azbo uz, azbo ,azbo online market, azbo internet dukani, azbo solfy, solfy karta{% endblock %}">
+    content="{% block meta_keywords %}Uzbek bazar uz, Uzbek bazar ,Uzbek bazar online market, Uzbek bazar internet dukani, Uzbek bazar solfy, solfy karta{% endblock %}">
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="og:title" content="{% block og_title %}{% endblock %}">
@@ -23,7 +23,7 @@
     <meta property="og:url" content="{% block og_url %}{% endblock %}">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/imgs/theme/favico.png' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'assets/imgs/theme/header_logo.png' %}">
     <!-- Template CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
     
@@ -40,8 +40,8 @@
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
                             <ul>
-                                <li><a href="#">+998 (55)-506-0102</a></li>
-                                <li><i class="fa fa-map-marker-alt mr-5"></i><a target="_blank" href="#">{% blocktranslate %}Bizning joylashuvimiz{% endblocktranslate %}</a></li>
+                                <li><a href="#">+998 (97)-403-4341</a></li>
+                                <li><i class="fa fa-map-marker-alt mr-5"></i><a target="_blank" href="https://maps.app.goo.gl/PVYus86LXzCLfpzv9">{% blocktranslate %}Bizning joylashuvimiz{% endblocktranslate %}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -49,9 +49,9 @@
                         <div class="text-center">
                             <div id="news-flash" class="d-inline-block">
                                 <ul>
-                                    <li><i class="fa fa-angle-double-right mr-5"></i> Get great devices up to 50% off <a class="active" href="{% url 'products:shop' %}">View details</a></li>
-                                    <li><i class="fa fa-asterisk mr-5"></i><b class="text-danger">Supper Value Deals</b> - Save more with coupons</li>
-                                    <li><i class="fa fa-bell mr-5"></i> <b class="text-success"> Trendy 25</b> silver jewelry, save up 35% off today <a href="{% url 'products:shop' %}">Shop now</a></li>
+                                    <li><i class="fa fa-angle-double-right mr-5"></i> Ajoyib kiyim-kechaklar 50% gacha chegirma bilan! <a class="active" href="{% url 'products:shop' %}">View details</a></li>
+                                    <!-- <li><i class="fa fa-asterisk mr-5"></i><b class="text-danger">Supper Value Deals</b> - Save more with coupons</li> -->
+                                    <!-- <li><i class="fa fa-bell mr-5"></i> <b class="text-success"> Trendy 25</b> silver jewelry, save up 35% off today <a href="{% url 'products:shop' %}">Shop now</a></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
             <div class="container">
                 <div class="header-wrap header-space-between">
                     <div class="logo logo-width-1">
-                        <a href="{% url 'products:home' %}"><img src="{% static 'assets/imgs/theme/logo-default.png' %}" alt="logo"></a>
+                        <a href="{% url 'products:home' %}"><img style="width: 85px;" src="{% static 'assets/imgs/theme/logo-default.jpg' %}" alt="logo"></a>
                     </div>
                     <div class="search-style-2">
                         <form action="{% url 'products:search' %}" method='get' >
@@ -118,7 +118,7 @@
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
                                 <a href="{% url 'order:notification' %}">
-                                    <img class="svgInject" alt="azbo" src="{% static 'assets/imgs/theme/icons/bell.svg' %}">
+                                    <img class="svgInject" alt="Uzbek bazar" src="{% static 'assets/imgs/theme/icons/bell.svg' %}">
                                     {% if request.user.is_authenticated %}
                                     <span class="pro-count blue">{{ order_item|length }}</span>
                                     {% endif %}
@@ -126,7 +126,7 @@
                             </div>
                             <div class="header-action-icon-2">
                                 <a href="{% url 'order:wishlist' %}">
-                                    <img class="svgInject" alt="azbo" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}">
+                                    <img class="svgInject" alt="Uzbek bazar" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}">
                                     {% if request.user.is_authenticated %}
                                         <span class="pro-count blue">{{ wishlist|length }}</span>
                                     {% endif %}
@@ -134,7 +134,7 @@
                             </div>
                             <div class="header-action-icon-2">
                                 <a class="mini-cart-icon" href="{% url 'order:shop_cat_list' %}">
-                                    <img alt="azbo" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}">
+                                    <img alt="Uzbek bazar" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}">
                                     {% if request.user.is_authenticated %}
                                         <span class="pro-count blue">{{ shopcart|length }}</span>
                                     {% endif %}
@@ -153,7 +153,7 @@
                                                 {% for shopcart in shopcart %}
                                                     <li>
                                                         <div class="shopping-cart-img">
-                                                            <a href="{% url 'products:shop_detail' shopcart.product.slug shopcart.product.uuid %}"><img alt="azbo" src="{{ shopcart.product_image.image.url }}"></a>
+                                                            <a href="{% url 'products:shop_detail' shopcart.product.slug shopcart.product.uuid %}"><img alt="Uzbek bazar" src="{{ shopcart.product_image.image.url }}"></a>
                                                         </div>
                                                         <div class="shopping-cart-title">
                                                             <h4><a href="{% url 'products:shop_detail' shopcart.product.slug shopcart.product.uuid %}">{{ shopcart.product.title|slice:30 }}</a></h4>
@@ -187,7 +187,7 @@
                                     {% if request.user.is_authenticated %}
                                         <img class="rounded-circle shadow-5-strong" alt="{{ request.user.username }}" src="{{ request.user.photo.url }}">
                                     {% else %}
-                                        <img alt="azbo" src="{% static 'assets/imgs/theme/icons/icon-user.svg' %}">
+                                        <img alt="Uzbek bazar" src="{% static 'assets/imgs/theme/icons/icon-user.svg' %}">
                                     {% endif %}
                                 </a>
                             </div>
@@ -333,7 +333,7 @@
                         </nav>
                     </div>
                     <div class="hotline d-none d-lg-block">
-                        <p><i class="fa fa-phone-alt fa-2xl" style='font-size: 20px'></i> +998 (55)-506-0102 </p>
+                        <p><i class="fa fa-phone-alt fa-2xl" style='font-size: 20px'></i> +998 (97)-403-4341 </p>
                     </div>
 
                     
@@ -361,7 +361,7 @@
                     </div>
                     <div class="side-nav-categories">
                         <ul id="category-tabs">
-                            <li><a href="{% url 'products:shop' %}"  style="color: #15916D !important;">Barcha tavarlarni birdan korish</a></li>
+                            <li><a href="{% url 'products:shop' %}"  style="color: #B22222 !important;">Barcha tavarlarni birdan korish</a></li>
                         </ul>
                         {% for categorie in categories %}
                             <ul id="category-tabs">
@@ -401,7 +401,7 @@
                       <div class="col p-1">
                             <div class="d-flex flex-column align-items-center">
                                 <a href="{% url 'products:home' %}">
-                                  <img class="bottom_icon" alt="azbo" src="{% static 'assets/imgs/theme/icons/home.svg' %}">
+                                  <img class="bottom_icon" alt="Uzbek bazar" src="{% static 'assets/imgs/theme/icons/home.svg' %}">
                               </a>
                                 <p>{% blocktranslate %} Asosiy {% endblocktranslate %}</p>
                             </div>
@@ -410,7 +410,7 @@
                       <div class="col p-1">
                             <div class="d-flex flex-column align-items-center">
                                 
-                                <img class="bottom_icon burger-icon mb-2" alt="azbo" src="{% static 'assets/imgs/theme/icons/category.svg' %}">
+                                <img class="bottom_icon burger-icon mb-2" alt="Uzbek bazar" src="{% static 'assets/imgs/theme/icons/category.svg' %}">
                               
                                 <p>{% blocktranslate %} Katalog {% endblocktranslate %}</p>
                             </div>
@@ -419,7 +419,7 @@
                       <div class="col p-1">
                             <div class="d-flex flex-column align-items-center">
                                 <a href="{% url 'order:shop_cat_list' %}">
-                                  <img class="bottom_icon" alt="azbo" src="{% static 'assets/imgs/theme/icons/icon-cart-black.svg' %}" style='margin-left: 15px'>
+                                  <img class="bottom_icon" alt="Uzbek bazar" src="{% static 'assets/imgs/theme/icons/icon-cart-black.svg' %}" style='margin-left: 15px'>
                                     {% if request.user.is_authenticated %}
                                         <span class="position-relative top-0 translate-middle badge rounded-pill bg-primary">{{ shopcart|length }}</span>
                                     {% endif %}
@@ -431,7 +431,7 @@
                       <div class="col p-1">
                             <div class="d-flex flex-column justify-content-center align-items-center">
                                 <a href="{% url 'order:wishlist' %}">
-                                    <img class="bottom_icon" alt="azbo" src="{% static 'assets/imgs/theme/icons/icon-heart-black.svg' %}" style='margin-left: 15px'>
+                                    <img class="bottom_icon" alt="Uzbek bazar" src="{% static 'assets/imgs/theme/icons/icon-heart-black.svg' %}" style='margin-left: 15px'>
                                     {% if request.user.is_authenticated %}
                                     <span class="position-relative top-0 translate-middle badge rounded-pill bg-primary">{{ wishlist|length }}</span>
                                     {% endif %}
@@ -444,7 +444,7 @@
                       <div class="col p-1">
                             <div class="d-flex flex-column align-items-center">
                                 <a href="{% url 'accounts:profile' %}">
-                                  <img class="bottom_icon" alt="azbo" src="{% static 'assets/imgs/theme/icons/icon-user-black.svg' %}">
+                                  <img class="bottom_icon" alt="Uzbek bazar" src="{% static 'assets/imgs/theme/icons/icon-user-black.svg' %}">
                               </a>
                                 <p>{% blocktranslate %} Kabinet {% endblocktranslate %}</p>
                             </div>
@@ -507,14 +507,14 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="widget-about font-md mb-md-5 mb-lg-0">
                             <div class="logo logo-width-1 wow fadeIn animated">
-                                <a href="index.html"><img src="{% static 'assets/imgs/theme/logo-default.png' %}" alt="logo"></a>
+                                <a href="index.html"><img style="width: 85px;" src="{% static 'assets/imgs/theme/logo-default.jpg' %}" alt="logo"></a>
                             </div>
                             <h4 class="mt-20 mb-10 fw-600 text-grey-4 wow fadeIn animated">{% blocktranslate %} Aloqa {% endblocktranslate %}</h4>
                             <p class="wow fadeIn animated">
-                                <strong>{% blocktranslate %} Manzil {% endblocktranslate %}: </strong>{% blocktranslate %} Tashkent, Cho'pon ota ko'chasi, 4B uy {% endblocktranslate %}
+                                <strong>{% blocktranslate %} Manzil {% endblocktranslate %}: </strong>{% blocktranslate %} Tashkent, Amir Temur ko'chasi, 108 uy {% endblocktranslate %}
                             </p>
                             <p class="wow fadeIn animated">
-                                <strong>{% blocktranslate %} Telefon {% endblocktranslate %}: </strong>+998 (55)-506-0102
+                                <strong>{% blocktranslate %} Telefon {% endblocktranslate %}: </strong>+998 (97)-403-4341
                             </p>
                             <p class="wow fadeIn animated">
                                 <strong>{% blocktranslate %} Ish vaqti {% endblocktranslate %}: </strong>10:00 - 18:00, Mon - Sat
@@ -547,7 +547,7 @@
                     <div class="footer-bottom"></div>
                 </div>
                 <div class="col-lg-6">
-                    <p class="float-md-left font-sm text-muted mb-0">&copy; <span id="year-footer"></span>, <strong class="text-brand">"AZBO MARKET" {% blocktranslate %} MChJ {% endblocktranslate %}</strong>{% blocktranslate %} STIR {% endblocktranslate %}: 308102293</p>
+                    <p class="float-md-left font-sm text-muted mb-0">&copy; <span id="year-footer"></span>, <strong class="text-brand">"UZBEKBAZAR" {% blocktranslate %} MChJ {% endblocktranslate %}</strong>{% blocktranslate %} STIR {% endblocktranslate %}: 000000000</p>
                 </div>
                 <div class="col-lg-6">
                     <p class="text-lg-end text-start font-sm text-muted mb-0">
@@ -562,7 +562,7 @@
         <div class="preloader d-flex align-items-center justify-content-center">
             <div class="preloader-inner position-relative">
                 <div class="text-center">
-                    <img class="jump" src="{% static 'assets/imgs/theme/favico.png' %}" alt="azbo">
+                    <img class="jump" src="{% static 'assets/imgs/theme/favico.png' %}" alt="Uzbek bazar">
                     <h5 class="mb-5">{% blocktranslate %} Yuklanmoqda {% endblocktranslate %}</h5>
                     <div class="loader">
                         <div class="bar bar1"></div>
