@@ -176,8 +176,10 @@ class Product(BaseModel):
     variant = models.ManyToManyField(Variant, blank=True, related_name='variant_products')
     volume_xajm = models.ForeignKey(Volume_Xajm,  on_delete=models.SET_NULL, null=True, blank=True, related_name='valume_products')
     volume_xajm_value = models.IntegerField(null=True, blank=True, default=0)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     organization = models.ForeignKey(Organization, on_delete=models.RESTRICT, related_name='products')
+
+    
     
   
     @property
@@ -207,10 +209,9 @@ class Product(BaseModel):
 
     @property
     def get_price(self):
-
-        return self.product_size.first().price
-    
- 
+        if self.is_active:
+            return self.product_size.first().price
+        return 0
 
 
     def __str__(self):
@@ -239,7 +240,11 @@ class ProductSize(BaseModel):
     price = models.FloatField(default=0)
     is_active = models.BooleanField(default=True)
     
-
+    def save(self, *args, **kwargs):
+        if self.product.is_active == False:
+            self.product.is_active = True
+            self.product.save()
+        super().save(*args, **kwargs)
     
     def __str__(self):
         return f'{self.product}'
