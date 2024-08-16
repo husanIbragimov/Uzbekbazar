@@ -31,6 +31,7 @@ import admin_thumbnails
 
 @admin.register(Category)
 class CategoryAdmin(DraggableMPTTAdmin, TranslationAdmin):
+    fields = ('name', 'parent', 'icon', 'photo', 'is_active', 'is_colors', 'is_brend', 'is_size', 'is_season')
     mptt_indent_field = "name"
     list_display = ('tree_actions', 'indented_title', 'create_at', 'is_active', 'id', 'uuid')
 
@@ -109,55 +110,55 @@ class BannerAdmin(TranslationAdmin):
             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
         }
 
-@admin.register(AuthorBook)
-class AuthorBookAdmin(TranslationAdmin):
-    class Media:
-        js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
+# @admin.register(AuthorBook)
+# class AuthorBookAdmin(TranslationAdmin):
+#     class Media:
+#         js = (
+#             'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+#             'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+#             'modeltranslation/js/tabbed_translation_fields.js',
+#         )
+#         css = {
+#             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+#         }
 
-@admin.register(CoverBook)
-class CoverBookAdmin(TranslationAdmin):
-    class Media:
-        js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
-
-
-@admin.register(PublisherBook)
-class PublisherBookAdmin(TranslationAdmin):
-    class Media:
-        js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
+# @admin.register(CoverBook)
+# class CoverBookAdmin(TranslationAdmin):
+#     class Media:
+#         js = (
+#             'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+#             'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+#             'modeltranslation/js/tabbed_translation_fields.js',
+#         )
+#         css = {
+#             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+#         }
 
 
-@admin.register(LanguageBook)
-class LanguageBookAdmin(TranslationAdmin):
-    class Media:
-        js = (
-            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
-            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
-            'modeltranslation/js/tabbed_translation_fields.js',
-        )
-        css = {
-            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
-        }
+# @admin.register(PublisherBook)
+# class PublisherBookAdmin(TranslationAdmin):
+#     class Media:
+#         js = (
+#             'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+#             'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+#             'modeltranslation/js/tabbed_translation_fields.js',
+#         )
+#         css = {
+#             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+#         }
+
+
+# @admin.register(LanguageBook)
+# class LanguageBookAdmin(TranslationAdmin):
+#     class Media:
+#         js = (
+#             'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+#             'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+#             'modeltranslation/js/tabbed_translation_fields.js',
+#         )
+#         css = {
+#             'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+#         }
 
 
 @admin.register(Tags)
@@ -272,13 +273,28 @@ class BannerBottomAdmin(TranslationAdmin):
 
 @admin.register(Product)
 class ProductAdmin(TranslationAdmin):
+    fields = ["category", "title", "slug", "status", "brand", "desc", "tags", "description", "price_default", "percentage", "discount", "season", "variant", "volume_xajm", "volume_xajm_value", "is_active", "minimum_order_count", "organization"]
     inlines = [ProductImageInline, Additional_infoAdmin, ProductSizeAdmin]
+    readonly_fields = ('organization', )
     prepopulated_fields = {"slug": ('title',)}
     search_fields = ('title',)
     filter_horizontal = ('category', 'tags','variant', 'season', 'author_book')
     list_display = (
         'title', 'percentage', 'uuid', 'update_at',
     )
+
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        if not request.user.is_superuser:
+            queryset = queryset.filter(organization = request.user.organization)
+        return queryset
+
+    def save_model(self, request, obj, form, change):
+        if not request.user.is_superuser:
+            obj.organization = request.user.organization
+        super().save_model(request, obj, form, change)
+    
+
 
     class Media:
         js = (

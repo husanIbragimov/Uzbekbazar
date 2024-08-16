@@ -5,7 +5,7 @@ from mptt.models import MPTTModel, TreeForeignKey
 from app.base.models import BaseModel, Variant
 from ckeditor.fields import RichTextField
 from ckeditor_uploader.fields import RichTextUploadingField
-
+from app.accounts.models import Organization
 from django.db.models import Avg
 
 # Create your models here.
@@ -32,7 +32,6 @@ class Size(MPTTModel, BaseModel):
         return self.name
     
 class Category(MPTTModel, BaseModel):
-    
     name = models.CharField(max_length=255, null=True, blank=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
     icon = models.FileField(upload_to='icon/', null=True, blank=True)
@@ -164,7 +163,7 @@ class Product(BaseModel):
     brand = models.ForeignKey(Brend, on_delete=models.CASCADE, null=True, blank=True, related_name='brand_products')
     desc = RichTextUploadingField()
     tags = models.ManyToManyField(Tags,blank=True, related_name='tags_products')
-    
+    minimum_order_count = models.PositiveIntegerField(default=0)
     description = RichTextUploadingField()
     price_default = models.IntegerField(null=True, blank=True, default=0)
     percentage = models.FloatField(default=0, null=True, blank=True)
@@ -178,7 +177,7 @@ class Product(BaseModel):
     volume_xajm = models.ForeignKey(Volume_Xajm,  on_delete=models.SET_NULL, null=True, blank=True, related_name='valume_products')
     volume_xajm_value = models.IntegerField(null=True, blank=True, default=0)
     is_active = models.BooleanField(default=True)
-    
+    organization = models.ForeignKey(Organization, on_delete=models.RESTRICT, related_name='products')
     
   
     @property
