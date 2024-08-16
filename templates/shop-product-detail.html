@@ -333,12 +333,10 @@
                                         <div class="product-detail-rating">
                                             <div class="pro-details-brand">
                                                 {% if product.brand %}
-                                                    <span> {% blocktranslate %} Ishlab chiqaruvchi {% endblocktranslate %}: <a href="{% url 'products:shop' %}">{{ product.brand }}</a></span>
-                                                {% else  %}
-                                                    <span> {% blocktranslate %} Nashriyot {% endblocktranslate %}: <a href="{% url 'products:shop' %}">{{ product.publisher_book }}</a></span><br>
-                                                    {% for author_book in product.author_book.all %}
-                                                        <span> {% blocktranslate %} Muallif {% endblocktranslate %}: <a href="{% url 'products:shop' %}">{{ author_book }}</a></span><br>
-                                                    {% endfor %}
+                                                    <span> {% blocktranslate %} Ishlab chiqaruvchi {% endblocktranslate %}: <a href="{% url 'products:shop' %}">{{ product.brand }}</a></span><br>
+                                                {% endif %}
+                                                {% if product.organization  %}
+                                                        <span> {% blocktranslate %} Dukon {% endblocktranslate %}: <a href="{% url 'products:org' product.organization.uuid %}">{{ product.organization }}</a></span> 
                                                 {% endif %}
                                             </div>
                                             <div class="product-rate-cover text-end">

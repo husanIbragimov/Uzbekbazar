@@ -11,10 +11,29 @@
             <div class="container">
                 <div class="breadcrumb">
                     <a href="{% url 'products:home' %}" rel="nofollow">{% blocktranslate %} Bosh Sahifa {% endblocktranslate %}</a>
-                    <span></span> <a href="{% url 'products:shop' %}">{% blocktranslate %} Barcha tavarlar {% endblocktranslate %}</a>
+                    <span></span> <a href="#">{{ org.name }}</a>
                 </div>
             </div>
         </div>
+        {% if org.banner %}
+        <div class="container">
+            <div class="card" style="width: 100%;">
+                <img class="card-img-top" src="{{ org.banner.url }}" alt="Card image cap" style="width: 100%;">
+                <div class="d-flex align-items-center ml-15 p-2">
+                    <div class="flex-shrink-0" style="width: 80px;">
+                        <img src="{{ org.avatar.url }}" alt="" class="rounded-circle w-100">
+                    </div>
+                    <div class="ml-3">
+                        <div class="card-body p-2">
+                            <h5 class="card-title">{{ org.name }}</h5>
+                            <p class="card-text">{{ org.create_at|date:"Y-m-d" }} buyon UzbekBazar sotuvchisi</p>
+                            <p class="card-text">{{ orders }} buyurtmalar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
         <section class="mt-60 mb-60">
             
             <div class="container">

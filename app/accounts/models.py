@@ -24,6 +24,7 @@ class User(AbstractUser):
 class Organization(BaseModel):
     name = models.CharField(max_length=255)
     avatar = models.FileField(upload_to="Organizations", null=True, blank=True)
+    banner = models.FileField(upload_to="Organizations", null=True, blank=True)
     user = models.OneToOneField(
         User, on_delete=models.CASCADE,
         related_name='organization',

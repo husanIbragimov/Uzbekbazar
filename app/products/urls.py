@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import HomePage, ShopView, ShopViewAll, ShopDetailView, ProductCommentView, SearchResultsView
+from .views import HomePage, ShopView, ShopViewAll, ShopDetailView, ProductCommentView, SearchResultsView, OrgShopView
 
 app_name = 'products'
 urlpatterns = [
@@ -9,5 +9,5 @@ urlpatterns = [
     path('product/<slug:slug>/<uuid:uuidd>/', ShopDetailView.as_view(), name='shop_detail'),
     path('comment/<uuid:uuid>/', ProductCommentView.as_view(), name='comment_create'),
     path('search/', SearchResultsView.as_view(), name='search'),
-    
+    path('org/<uuid:uuid>', OrgShopView.as_view(), name='org')
 ]

@@ -29,9 +29,11 @@ from django.db.models import Q
 import uuid
 from django.http import HttpResponseNotFound
 from django.core.cache import cache
+from app.accounts.models import Organization
+from app.order.models import OrderItem
 # Create your views here.
 class HomePage(View):
-    DEFAULT_TIMEOUT = 60*2
+    DEFAULT_TIMEOUT = 5
     def get(self, request):
         product = cache.get('product') 
         banner_discount = cache.get('banner_discount')
@@ -165,7 +167,7 @@ class ShopView(View):
         clear_products = products.distinct('uuid')
     
 
-        page_size = request.GET.get('page_size', 10)
+        page_size = request.GET.get('page_size', 30)
         paginator = Paginator(clear_products, page_size)
 
         page_num = request.GET.get('page', 1)
@@ -205,11 +207,32 @@ class ShopView(View):
 class ShopViewAll(View):
     def get(self, request):
         products = Product.objects.filter(is_active=True).order_by('?')
+        page_size = request.GET.get('page_size', 30)
+        paginator = Paginator(products, page_size)
+
+        page_num = request.GET.get('page', 1)
+        page_obj = paginator.get_page(page_num)
         
         context = {
-            'products' : products
+            'products' : page_obj
         }
         return render(request, 'shopall.html', context)
+    
+class OrgShopView(View):
+    def get(self, request, uuid):
+        products = Product.objects.filter(is_active=True, organization__uuid = uuid).order_by('?')
+        org = Organization.objects.get(uuid=uuid)
+        page_size = request.GET.get('page_size', 30)
+        paginator = Paginator(products, page_size)
+        orders = OrderItem.objects.filter(product__organization = org).count()
+        page_num = request.GET.get('page', 1)
+        page_obj = paginator.get_page(page_num)
+        context = {
+            'products' : page_obj,
+            'org': org,
+            'orders': orders
+        }
+        return render(request, 'org-shop.html', context)
 
 class ShopDetailView(View):
     def get(self, request, slug, uuidd):

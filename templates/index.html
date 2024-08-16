@@ -34,7 +34,7 @@
                 </div>
             </div>
         </section>
-        <!-- <section class="featured pb-30 pt-10">
+        <section class="featured pb-30 pt-10">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-4 col-md-6 mb-md-3 mb-lg-0">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
             </div>
-        </section> -->
+        </section>
         <section class="product-tabs pb-30 wow fadeIn animated">
             <div class="container">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -308,7 +308,7 @@
                                 <div class="card-1 border-radius-10 hover-up p-30">
                                     <figure class="mb-30 img-hover-scale overflow-hidden">
                                         {% if categorie.photo %}
-                                            <img src="{{ categorie.photo.url }}" alt="">
+                                            <img src="{{ categorie.photo.url }}" alt="" height="100">
                                         {% endif %}
                                     </figure>
                                     <h5><a href="{% url 'products:shop' categorie.uuid %}">{{ categorie.name }}</a></h5>
