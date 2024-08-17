@@ -2,7 +2,6 @@
 venv/
 *.pyc
 /static
-media
 config/settings_dev.py
 config/settings_prod.py
 .DS_Store
