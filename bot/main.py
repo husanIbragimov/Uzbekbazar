@@ -1,9 +1,9 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-token = '6786050219:AAGAqVw26jBafZtU7HDzltCp4aW4kJA0ZIc'
+token = '7517285002:AAHNGRiAsweRqsKeokDjlvDFrVcmIBojtKY'
 url = 'http://127.0.0.1:8000/'
-url_server = 'https://test.azbo.uz'
+url_server = 'https://uzbekbazar.uz'
 bot = Bot(token=token)
 
 # dp = Dispatcher(bot)

@@ -10,7 +10,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import OrderOneClickForm
 from django.urls import reverse
 from django.db.models import Q
-from bot.main import order_product_one_clik, order_product_variant, order_product_shop, order_product_info
+# from bot.main import order_product_one_clik, order_product_variant, order_product_shop, order_product_info
+from bot.bot_api import order_product_one_click, order_product_variant, order_product_shop, order_product_info
 import asyncio
 
 # Create your views here.
@@ -161,6 +162,7 @@ class OrderCreateView(LoginRequiredMixin, View):
                     }
                     
                     order_item = []
+                    chat_id = order.order_item.first().product.organization.telegram_group_id
                     for i in order.order_item.all():
                         order_item.append(
                             dict(
@@ -172,7 +174,7 @@ class OrderCreateView(LoginRequiredMixin, View):
                                 product_price = i.product_price
                             )
                         )
-                    asyncio.run(order_product_shop(order, order_item))
+                    order_product_shop(order, order_item, chat_id)
                     return render(request, 'order-confirmed-shop.html', context)
                 else:
                     messages.info(request, 'Siz Tanlagan mahsulot Xozir qolmagan')
@@ -234,7 +236,7 @@ class OrderCreateOneClikView(View):
                     'order' : order
                 }
 
-                asyncio.run(order_product_one_clik(order))
+                order_product_one_click(order, product.organization.telegram_group_id)
                 return render(request, 'order-confirmed.html', context)
             
         else:
@@ -265,7 +267,7 @@ class OrderVariantView(LoginRequiredMixin, View):
             context = {
                 'order' : order
             }
-            # asyncio.run(order_product_variant(order))
+            order_product_variant(order, product.organization.telegram_group_id)
             return render(request, 'order-confirmed-variant.html', context)
         
         
@@ -293,7 +295,7 @@ class OrderCreateInfoView(LoginRequiredMixin, View):
                 )
             messages.success(request, "Siz tanlagan mahsulot yetib kelishi bilan siz bilan bog'lanamiz")    
             
-            asyncio.run(order_product_info(order))
+        order_product_info(order, order.product.organization.telegram_group_id)
         return redirect(url)
 
 
