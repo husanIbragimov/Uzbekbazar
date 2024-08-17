@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import os
 from django.utils.translation import gettext_lazy as _
+from .jazzmin_conf import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -217,43 +218,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-JAZZMIN_SETTINGS = {
-    # title of the window
-    'site_title': 'AZBO Admin',
 
-    # Title on the login screen
-    'site_header': 'AZBO',
-    "site_brand": "AZBO Admin",
-
-    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
-    "site_icon": 'assets/imgs/theme/favico.png',
-
-    # square logo to use for your site, must be present in static files, used for favicon and brand on top left
-    'site_logo': 'assets/imgs/theme/favico.png',
-
-    "login_logo": 'assets/imgs/theme/logo-default.png',
-    "login_logo_dark": 'assets/imgs/theme/logo-default.png',
-
-    # Welcome text on the login screen
-    'welcome_sign': 'Welcome to AZBO',
-
-    # Copyright on the footer
-    'copyright': 'ictacademy',
-
-  
- 
-
-    # top dagi menular
-    'topmenu_links': [
-
-        # Url that gets reversed (Permissions can be added)
-        {'name': 'Home', 'url': 'products:home'},
-
-
-     
-    ]
-
-}
 
 
 # CACHES = {

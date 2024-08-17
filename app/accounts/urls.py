@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import LoginView, LogoutView, RegisterView, ProfileView, ProfileUpdateView, PasswordChangeView, OrderDetailView
+from .views import LoginView, LogoutView, RegisterView, ProfileView, ProfileUpdateView, PasswordChangeView, OrderDetailView, user_info
 
 
 app_name = 'accounts'
@@ -11,4 +11,5 @@ urlpatterns = [
     path('order-detail/<uuid:uuid>/', OrderDetailView.as_view(), name='order_detail'),
     path("profile/edit/", ProfileUpdateView.as_view(), name="profile-edit"),
     path('password-change/', PasswordChangeView.as_view(), name='password_change'),
+    path('admin-info/',user_info, name='admin_info')
 ]

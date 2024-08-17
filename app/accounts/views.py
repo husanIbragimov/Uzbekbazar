@@ -6,6 +6,22 @@ from django.shortcuts import render, redirect
 from django.views import View
 from .forms import UserCreateForm, CustomAuthForm, UserUpdateForm, ChangePasswordForm
 from app.order.models import Order
+from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def user_info(request):
+
+    org = None
+    try:
+        org = request.user.organization.avatar.url
+    except:
+        org = None
+    user_data = {
+        'photo': request.user.photo.url,
+        'org': org,
+    }
+    return JsonResponse(user_data)
 
 # Create your views here.
 class RegisterView(View):
