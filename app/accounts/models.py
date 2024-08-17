@@ -29,7 +29,31 @@ class Organization(BaseModel):
         User, on_delete=models.CASCADE,
         related_name='organization',
     )
+    telegram_group_id = models.CharField(max_length=255, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.name
+
+
+class Tariff(BaseModel):
+    name = models.CharField(max_length=255)
+    price = models.PositiveIntegerField(default=0)
+
+    def __str__(self) -> str:
+        return self.name
+
+
+class Contract(BaseModel):
+    organization = models.OneToOneField(Organization, on_delete=models.CASCADE, related_name='organization')
+    company_type = models.CharField(max_length=2555, verbose_name='firma turi')
+    mfo = models.CharField(max_length=50, null=True, blank=True, verbose_name='mfo')
+    oked = models.CharField(max_length=50, null=True, blank=True, verbose_name='oked')
+    inn = models.CharField(max_length=20, verbose_name='inn')
+    statute = models.FileField(upload_to='ustav/', verbose_name='ustav')
+    certificate = models.FileField(upload_to='guvohnoma/', name='guvohnoma')
+    director_passport = models.FileField(upload_to='director_passport/', verbose_name='direktor pasport')
+    tariff = models.OneToOneField(Tariff, on_delete=models.CASCADE, related_name='organization')
+
+    def __str__(self) -> str:
+        return self.organization.name

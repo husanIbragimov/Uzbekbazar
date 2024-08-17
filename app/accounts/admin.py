@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User, Organization
+from .models import User, Organization, Contract, Tariff
 from django.utils.translation import gettext as _
 
 
@@ -25,8 +25,24 @@ class ModelNameAdmin(UserAdmin):
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
     )
 
+@admin.register(Tariff)
+class TariffAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price')
 
+class ContractItemAdmin(admin.StackedInline):
+    model = Contract
+    extra = 1
 
 @admin.register(Organization)
 class OrganizationAdmin(admin.ModelAdmin):
     list_display = ("name",)
+    inlines = [ContractItemAdmin]
+
+
+@admin.register(Contract)
+class ContractAdmin(admin.ModelAdmin):
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
+        if not request.user.is_superuser:
+            queryset = queryset.filter(organization = request.user.organization)
+        return queryset
