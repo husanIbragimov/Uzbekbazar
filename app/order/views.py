@@ -265,7 +265,7 @@ class OrderVariantView(LoginRequiredMixin, View):
             context = {
                 'order' : order
             }
-            asyncio.run(order_product_variant(order))
+            # asyncio.run(order_product_variant(order))
             return render(request, 'order-confirmed-variant.html', context)
         
         

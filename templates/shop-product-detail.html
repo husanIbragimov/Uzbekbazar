@@ -374,19 +374,21 @@
 
                                         </div>
                                         <div class='row'>
-                                        
+                                            {% if product.variant.all %}
                                             <div class="short-desc mb-30 col-xl-6 col-lg-12 mt-30">
+                                            {% else %}
+                                            <div class="short-desc mb-30 col-xl-12 col-lg-12 mt-30"></div>
+                                            {% endif %}
                                                 {% if not product.cover_book %}
                                                     <div class="attr-detail attr-color mb-15">
                                                         <strong class="mr-10">{% blocktranslate %} Rang {% endblocktranslate %}:</strong>
-                                                        <ul class="list-filter color-filter">
+                                                        <ul class="list-filter color-filter mt-2">
                                                             {% for image_color in image_color_data %}
                                                                 {% if forloop.counter == 1 %}
                                                                     <li class="{% if image_color.color.uuid == active_color %} active {% endif %}">
                                                                             
                                                                             <a href="{% url "products:shop_detail" product.slug product.uuid  %}?color={{ image_color.color.uuid }}">
-                                                                                <img src="{{ image_color.image.url }}" alt="" width="50"
-                                                                                    height="50">
+                                                                                <span style="width: 25px; height: 25px; border-radius: 50%; border: 1px solid black; background-color: {{ image_color.color.code }};"></span>
                                                                             </a>
                                                                         
                                                                     </li>
@@ -394,8 +396,8 @@
                                                                     <li class="{% if image_color.color.uuid == active_color %} active {% endif %}">
                                                                         
                                                                         <a href="{% url "products:shop_detail" product.slug product.uuid %}?color={{ image_color.color.uuid }}" >
-                                                                            <img src="{{ image_color.image.url }}" alt="" width="50"
-                                                                                height="50">
+                                                                            <span style="width: 25px; height: 25px; border-radius: 50%; border: 1px solid black; background-color: {{ image_color.color.code }};"></span>
+                                                                            
                                                                         </a>
                                                                         
                                                                     </li>
@@ -510,7 +512,7 @@
                                                 <div class="product-extra-link2" style='width:70px'>
                                                     <input type='hidden' name='active_color' value={{ active_color }}>
                                                     <input type='hidden' name='active_size' value={{ active_size }}>
-                                                    <input type="number" name ="quantity" value="1" min="1" max="{{ product_availability }}">
+                                                    <input type="number" name ="quantity" value="{{ product.minimum_order_count }}" min="{{ product.minimum_order_count }}" max="{{ product_availability }}">
                                                 </div>
                                                 <div class="product-extra-link2">
                                                     <a aria-label="{% blocktranslate %} Istaklar {% endblocktranslate %}" class="action-btn hover-up mb-10" href="{% url 'order:wishlist_product' product.uuid %}"><i class="far fa-heart"></i></a>
