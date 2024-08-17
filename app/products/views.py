@@ -164,7 +164,7 @@ class ShopView(View):
   
        
       
-        clear_products = products.distinct('uuid')
+        clear_products = products.distinct()
     
 
         page_size = request.GET.get('page_size', 30)
@@ -373,7 +373,7 @@ class SearchResultsView(View):
         ) 
         
         context = {
-            'products' : object_list.distinct('uuid')
+            'products' : object_list.distinct()
         }
         
         return render(request, 'shopall.html', context)
