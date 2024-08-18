@@ -58,7 +58,7 @@ class HomePage(View):
         new_products = Product.objects.filter(is_active=True).order_by('-create_at')[:20]
         hot_products = Product.objects.filter(is_active=True, status='hot').order_by('-create_at')[:3]
         best_products = Product.objects.filter(is_active=True, status='best').order_by('-create_at')[:3]
-        
+        org = Organization.objects.all()
         
         context = {
             'banners' : banners,
@@ -71,7 +71,8 @@ class HomePage(View):
             'popular_product': popular_product,
             'new_products' : new_products,
             'hot_products' : hot_products,
-            'best_products' : best_products
+            'best_products' : best_products,
+            'org': org
         }
         return render(request, 'index.html', context)
     
