@@ -31,6 +31,10 @@ class Organization(BaseModel):
     )
     telegram_group_id = models.CharField(max_length=255, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
+    telegram = models.CharField(max_length=255, null=True, blank=True)
+    instagram = models.CharField(max_length=255, null=True, blank=True)
+    facebook = models.CharField(max_length=255, null=True, blank=True)
+
 
     def __str__(self):
         return self.name
@@ -53,7 +57,7 @@ class Contract(BaseModel):
     statute = models.FileField(upload_to='ustav/', verbose_name='ustav')
     certificate = models.FileField(upload_to='guvohnoma/', name='guvohnoma')
     director_passport = models.FileField(upload_to='director_passport/', verbose_name='direktor pasport')
-    tariff = models.OneToOneField(Tariff, on_delete=models.CASCADE, related_name='organization')
+    tariff = models.ForeignKey(Tariff, on_delete=models.CASCADE, related_name='organization')
 
     def __str__(self) -> str:
         return self.organization.name
