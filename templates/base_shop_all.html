@@ -206,11 +206,11 @@
                                                 <a href="#">{% if categorie.icon %}<img style="margin-right: 17px" width="19px" height="19px" src="{{ categorie.icon.url }}">{% endif %}{{ categorie.name }}</a>
                                                 <div class="dropdown-menu">
                                                     <ul class="mega-menu d-lg-flex">
-                                                        <li class="mega-menu-col col-lg-7">
-                                                            <ul class="d-lg-flex">
+                                                        <li class="mega-menu-col col-lg-12">
+                                                            <ul class="d-lg-flex flex-wrap">
 
                                                                     {% for sub_cat in categorie.get_children %}
-                                                                        <li class="mega-menu-col col-lg-6">
+                                                                        <li class="mega-menu-col col-lg-4">
                                                                             <ul>
                                                                                 <li><span class="submenu-title">{{ sub_cat.name }}</span></li>
                                                                                     {% if sub_cat.get_children %}
