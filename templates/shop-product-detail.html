@@ -313,7 +313,7 @@
                                         <!-- MAIN SLIDES -->
                                         <div class="product-image-slider">
                                             {% for image in images %}
-                                                <figure class="border-radius-10">
+                                                <figure class="border-radius-10" >
                                                     <img src="{{ image.image_url }}" alt="{{ product.title }}">
                                                 </figure>
                                             {% endfor %}
@@ -336,8 +336,10 @@
                                                     <span> {% blocktranslate %} Ishlab chiqaruvchi {% endblocktranslate %}: <a href="{% url 'products:shop' %}">{{ product.brand }}</a></span><br>
                                                 {% endif %}
                                                 {% if product.organization  %}
-                                                        <span> {% blocktranslate %} Dukon {% endblocktranslate %}: <a href="{% url 'products:org' product.organization.uuid %}">{{ product.organization }}</a></span> 
+                                                        <span> {% blocktranslate %} Dukon {% endblocktranslate %}: <a href="{% url 'products:org' product.organization.uuid %}">{{ product.organization }}</a></span> <br>
                                                 {% endif %}
+                                                <span> {% blocktranslate %} Minimum sotib olish soni {% endblocktranslate %}: <a href="#">{{ product.minimum_order_count }}</a></span> <br>
+
                                             </div>
                                             <div class="product-rate-cover text-end">
                                                 <div class="product-rate d-inline-block">

@@ -242,7 +242,6 @@ class ShopDetailView(View):
             
             banner_discount = BannerDiscount.objects.filter(is_active=True).last()
             productreview = product.praducts_review.all().order_by("-create_at")
-            image = product.product_images.all()
             image_color = ProductImage.objects.filter(product__uuid = uuidd, is_active=True)
             praducts_additional_info = product.praducts_additional_info.all()
             related_products_all = product.category.all()
@@ -275,6 +274,8 @@ class ShopDetailView(View):
             
             active_color = request.GET.get('color', product.product_size.first().color.uuid)
             active_variant = request.GET.get('variant', 0)
+            image = product.product_images.filter(color__uuid=active_color)
+
 
             if active_color:
                 active_size = request.GET.get('size', product.product_size.filter(Q(color__uuid__icontains = active_color) & Q(is_active=True))[0].size.uuid)
