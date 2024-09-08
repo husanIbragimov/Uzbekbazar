@@ -1,5 +1,6 @@
 
 JAZZMIN_SETTINGS = {
+
     # title of the window (Will default to current_admin_site.site_title if absent or None)
     "site_title": "UZBEKBAZAR Admin",
     # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
@@ -123,6 +124,8 @@ JAZZMIN_SETTINGS = {
     # Relative paths to custom CSS/JS scripts (must be present in static files)
     "custom_css": "custom_admin.css",
     "custom_js": None,
+    "custom_login_template": "admin/login.html",
+
     # Whether to link font from fonts.googleapis.com (use custom_css to supply font otherwise)
     "use_google_fonts_cdn": True,
     # Whether to show the UI customizer on the sidebar
