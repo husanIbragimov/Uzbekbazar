@@ -10,13 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-from pathlib import Path
 import os
+from pathlib import Path
+
 from django.utils.translation import gettext_lazy as _
+
 from .jazzmin_conf import *
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -28,7 +30,6 @@ SECRET_KEY = 'django-insecure-d)&&n6n6bianma!x#*9cr!zy3$al3+81gwj+b_)wy1tpt#(+p0
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -44,8 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
 
-
-    #packeges
+    # packeges
     'mptt',
     'ckeditor',
     'ckeditor_uploader',
@@ -54,18 +54,19 @@ INSTALLED_APPS = [
     'rest_framework',
     'debug_toolbar',
 
-    #local apps
+    # local apps
     'app.accounts',
     'app.products',
     'app.base',
     'app.order',
 ]
 
-CKEDITOR_UPLOAD_PATH  = 'ckeditor/'
+CKEDITOR_UPLOAD_PATH = 'ckeditor/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'app.base.middleware.ForceDefaultLanguageMiddleware',
     "django.middleware.locale.LocaleMiddleware",
     'django.middleware.common.CommonMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
@@ -75,11 +76,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 INTERNAL_IPS = [
-   
+
     "127.0.0.1",
-    
+
 ]
 
 # AUTH_USER_MODEL ='accounts.User'
@@ -107,7 +107,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'OnlineShop.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -130,9 +129,6 @@ DATABASES = {
 # }
 
 
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -151,13 +147,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 
-
-LANGUAGE_CODE = 'uz-uz'
+LANGUAGE_CODE = 'uz'
 
 TIME_ZONE = 'Asia/Tashkent'
 
@@ -165,20 +159,16 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 LANGUAGES = [
     ("uz", _("Uzbek")),
     ("ru", _("Russian")),
 ]
 
-
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
-
 
 AUTH_USER_MODEL = "accounts.User"
 
-
-LOCALE_PATHS = BASE_DIR , 'locale'
+LOCALE_PATHS = [os.path.join(BASE_DIR, "locale")]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -193,13 +183,11 @@ MEDIA_ROOT = "media/"
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-
 # STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static/'
 ]
 # STATIC_ROOT = 'staticfiles'
-
 
 
 # Default primary key field type
@@ -216,10 +204,6 @@ STATICFILES_DIRS = [
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-
-
 
 # CACHES = {
 #     'default': {
